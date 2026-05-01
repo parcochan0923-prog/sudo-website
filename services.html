@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudo — Services</title>
+  <meta name="description" content="AI automation, chatbots, website development, and custom software for Hong Kong businesses.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Sudo" height="48"></a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+      <a href="services.html" data-en="Services" data-zh="服務" class="active">Services</a>
+      <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+      <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <a href="contact.html" class="btn-cta" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+  <a href="services.html" data-en="Services" data-zh="服務">Services</a>
+  <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+  <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+  <a href="contact.html" class="btn-cta" style="text-align:center;" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+</div>
+
+<!-- Page Header -->
+<section style="padding: 160px 0 60px; background: var(--bg-white);">
+  <div class="container fade-up">
+    <div class="section-label" data-en="WHAT WE DO" data-zh="我們的服務">WHAT WE DO</div>
+    <h1 class="section-title" data-en="Our Services" data-zh="我們的服務">Our Services</h1>
+    <p class="section-desc" data-en="From automation to custom development, we build tools that fit your business." data-zh="從自動化到客製開發，我們為你的業務打造合適的工具。">From automation to custom development, we build tools that fit your business.</p>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section-light" style="padding-top: 40px;">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">⚡</div>
+        <h3 data-en="AI Automation" data-zh="AI 自動化">AI Automation<small data-en="Automate repetitive tasks" data-zh="自動化重複性工作">Automate repetitive tasks</small></h3>
+        <p data-en="Eliminate manual work by connecting your tools and automating workflows. From data entry to reporting — let machines handle the boring stuff." data-zh="連接你的工具並自動化工作流程，消除手動操作。從數據錄入到報告生成 — 讓機器處理繁瑣工作。">Eliminate manual work by connecting your tools and automating workflows. From data entry to reporting — let machines handle the boring stuff.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🤖</div>
+        <h3 data-en="AI Chatbots" data-zh="AI 聊天機械人">AI Chatbots<small data-en="Smart customer engagement" data-zh="智能客戶互動">Smart customer engagement</small></h3>
+        <p data-en="Deploy intelligent chatbots on WhatsApp, your website, or social media. Available 24/7 to handle inquiries, bookings, and support." data-zh="在 WhatsApp、網站或社交媒體上部署智能聊天機械人。24/7 全天候處理查詢、預約和客戶支援。">Deploy intelligent chatbots on WhatsApp, your website, or social media. Available 24/7 to handle inquiries, bookings, and support.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🌐</div>
+        <h3 data-en="Website Development" data-zh="網站開發">Website Development<small data-en="Modern, responsive design" data-zh="現代響應式設計">Modern, responsive design</small></h3>
+        <p data-en="Professional websites that convert visitors into customers. Fast, mobile-friendly, and optimized for search engines." data-zh="專業網站，將訪客轉化為客戶。快速、移動端友好，並針對搜索引擎優化。">Professional websites that convert visitors into customers. Fast, mobile-friendly, and optimized for search engines.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🔧</div>
+        <h3 data-en="Custom Software" data-zh="客製軟件">Custom Software<small data-en="Built for your needs" data-zh="為你量身打造">Built for your needs</small></h3>
+        <p data-en="Off-the-shelf doesn't always fit. We build tailored software solutions that integrate seamlessly with your existing systems." data-zh="現成軟件未必適合。我們構建客製化軟件解決方案，與你現有系統無縫整合。">Off-the-shelf doesn't always fit. We build tailored software solutions that integrate seamlessly with your existing systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section-white">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label" data-en="HOW WE WORK" data-zh="我們的工作方式">HOW WE WORK</div>
+      <h2 id="title-process" class="section-title">Simple process, <span class="muted">real results</span></h2>
+      <p class="section-desc" data-en="Three steps to transform your business operations." data-zh="三個步驟，改變你的業務運營。">Three steps to transform your business operations.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up">
+        <div class="process-number">01</div>
+        <h3 data-en="Discovery" data-zh="了解需求">Discovery<small data-en="Understand your workflows" data-zh="深入了解你的工作流程">Understand your workflows</small></h3>
+        <p data-en="We start with a free consultation to understand your business, identify bottlenecks, and find the best opportunities for automation." data-zh="我們從免費諮詢開始，了解你的業務，找出瓶頸，並尋找最佳的自動化機會。">We start with a free consultation to understand your business, identify bottlenecks, and find the best opportunities for automation.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-number">02</div>
+        <h3 data-en="Design & Build" data-zh="設計與開發">Design & Build<small data-en="Tailored to your needs" data-zh="為你量身打造">Tailored to your needs</small></h3>
+        <p data-en="We design and develop a custom solution — whether it's an automated workflow, chatbot, or a full web application — built specifically for your business." data-zh="我們設計並開發客製化解決方案 — 無論是自動化工作流程、聊天機械人還是完整的網頁應用程式 — 專為你的業務構建。">We design and develop a custom solution — whether it's an automated workflow, chatbot, or a full web application — built specifically for your business.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-number">03</div>
+        <h3 data-en="Launch & Support" data-zh="上線與支援">Launch & Support<small data-en="Ongoing optimization" data-zh="持續優化">Ongoing optimization</small></h3>
+        <p data-en="We deploy your solution, monitor performance, and provide ongoing support to ensure everything runs smoothly as your business grows." data-zh="我們部署你的解決方案，監控性能，並提供持續支援，確保一切順利運行，與你的業務一起成長。">We deploy your solution, monitor performance, and provide ongoing support to ensure everything runs smoothly as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-purple" style="text-align: center;">
+  <div class="container fade-up">
+    <h2 class="section-title" style="margin-bottom: 16px;" data-en="Ready to get started?" data-zh="準備好開始了嗎？">Ready to get started?</h2>
+    <p style="color: var(--text-white-muted); font-size: 1.05rem; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto;" data-en="Book a free consultation and let's discuss your project." data-zh="預約免費諮詢，讓我們一起討論你的項目。">Book a free consultation and let's discuss your project.</p>
+    <a href="contact.html" class="btn-cta-white" style="display: inline-block;" data-en="Contact Us" data-zh="聯絡我們">Contact Us</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 Sudo. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">Based in Hong Kong</span></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

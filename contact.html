@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudo — Contact</title>
+  <meta name="description" content="Book a free consultation with Sudo. Let's explore how AI can transform your Hong Kong business.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Sudo" height="48"></a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+      <a href="services.html" data-en="Services" data-zh="服務">Services</a>
+      <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+      <a href="contact.html" data-en="Contact" data-zh="聯絡我們" class="active">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <a href="contact.html" class="btn-cta" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+  <a href="services.html" data-en="Services" data-zh="服務">Services</a>
+  <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+  <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+  <a href="contact.html" class="btn-cta" style="text-align:center;" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+</div>
+
+<!-- Contact -->
+<section class="contact-section section-purple" style="padding-top: 160px;">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <div class="section-label" data-en="GET STARTED" data-zh="開始行動">GET STARTED</div>
+        <h2 class="section-title" data-en="Ready to start?" data-zh="準備好開始了嗎？">Ready to start?</h2>
+        <p data-en="Book a free consultation and let's explore how AI can transform your business. No commitment, no pressure — just a conversation." data-zh="預約免費諮詢，讓我們一起探索 AI 如何改變你的業務。無需承諾，無需壓力 — 只是一次對話。">Book a free consultation and let's explore how AI can transform your business. No commitment, no pressure — just a conversation.</p>
+        <div class="contact-channels">
+          <div class="contact-channel">
+            <div class="contact-channel-icon">📧</div>
+            <span>hello@sudo.hk</span>
+          </div>
+          <div class="contact-channel">
+            <div class="contact-channel-icon">💬</div>
+            <span data-en="WhatsApp Available" data-zh="WhatsApp 可用">WhatsApp Available</span>
+          </div>
+          <div class="contact-channel">
+            <div class="contact-channel-icon">📍</div>
+            <span data-en="Based in Hong Kong" data-zh="立足香港">Based in Hong Kong</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-en="Name" data-zh="姓名">Name</label>
+              <input type="text" name="name" required data-ph-en="Your name" data-ph-zh="你的姓名" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label data-en="Email" data-zh="電郵">Email</label>
+              <input type="email" name="email" required data-ph-en="you@company.com" data-ph-zh="you@company.com" placeholder="you@company.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label data-en="Company" data-zh="公司名稱">Company</label>
+              <input type="text" name="company" data-ph-en="Company name" data-ph-zh="公司名稱" placeholder="Company name">
+            </div>
+            <div class="form-group">
+              <label data-en="Service Interested In" data-zh="感興趣的服務">Service Interested In</label>
+              <select name="service">
+                <option value="" data-en="Select a service" data-zh="選擇服務">Select a service</option>
+                <option value="automation" data-en="AI Automation" data-zh="AI 自動化">AI Automation</option>
+                <option value="chatbot" data-en="AI Chatbot" data-zh="AI 聊天機械人">AI Chatbot</option>
+                <option value="website" data-en="Website Development" data-zh="網站開發">Website Development</option>
+                <option value="software" data-en="Custom Software" data-zh="客製軟件">Custom Software</option>
+                <option value="other" data-en="Other" data-zh="其他">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label data-en="Message" data-zh="訊息">Message</label>
+              <textarea name="message" rows="4" required data-ph-en="Tell us about your project or challenge..." data-ph-zh="告訴我們你的項目或挑戰..." placeholder="Tell us about your project or challenge..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-cta form-submit" data-en="Send Message" data-zh="發送訊息">Send Message</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="checkmark">✓</div>
+          <h4 data-en="Message Sent!" data-zh="訊息已發送！">Message Sent!</h4>
+          <p data-en="Thank you! We'll get back to you within 24 hours." data-zh="謝謝！我們會在 24 小時內回覆你。">Thank you! We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 Sudo. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">Based in Hong Kong</span></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

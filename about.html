@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sudo — About</title>
-  <meta name="description" content="Sudo is an AI automation studio based in Hong Kong, helping businesses work smarter.">
+  <title>Minow — About</title>
+  <meta name="description" content="Minow is an AI automation studio based in Hong Kong, helping businesses work smarter.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="logo.png" type="image/png">
 </head>
@@ -13,16 +13,17 @@
 <!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Sudo" height="48"></a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Minow" height="52"></a>
     <div class="nav-links">
       <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
       <a href="services.html" data-en="Services" data-zh="服務">Services</a>
       <a href="about.html" data-en="About" data-zh="關於我們" class="active">About</a>
       <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+      <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
     </div>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle">中文</button>
-      <a href="contact.html" class="btn-cta" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+      <a href="booking.html" class="btn-cta" data-en="Book a Consultation" data-zh="預約諮詢">Book a Consultation</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -36,14 +37,14 @@
   <a href="services.html" data-en="Services" data-zh="服務">Services</a>
   <a href="about.html" data-en="About" data-zh="關於我們">About</a>
   <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
-  <a href="contact.html" class="btn-cta" style="text-align:center;" data-en="Free Consultation" data-zh="免費諮詢">Free Consultation</a>
+  <a href="booking.html" class="btn-cta" style="text-align:center;" data-en="Book a Consultation" data-zh="預約諮詢">Book a Consultation</a>
 </div>
 
 <!-- Page Header -->
 <section style="padding: 160px 0 60px; background: var(--bg-white);">
   <div class="container fade-up">
-    <div class="section-label" data-en="ABOUT SUDO" data-zh="關於 SUDO">ABOUT SUDO</div>
-    <h1 class="section-title" data-en="Built in Hong Kong, <span class='muted'>for Hong Kong</span>" data-zh="立足香港，<span class='muted'>服務香港</span>">Built in Hong Kong, <span class="muted">for Hong Kong</span></h1>
+    <div class="section-label" data-en="ABOUT MINOW" data-zh="關於 MINOW">ABOUT MINOW</div>
+    <h1 class="section-title" id="title-about">Built in Hong Kong, <span class="muted">for Hong Kong</span></h1>
   </div>
 </section>
 
@@ -52,34 +53,34 @@
   <div class="container">
     <div class="about-content">
       <div class="about-text fade-up">
-        <p data-en="Sudo is an AI automation studio helping Hong Kong businesses work smarter. We believe that every company — from startups to enterprises — deserves access to powerful automation tools." data-zh="Sudo 是一家 AI 自動化工作室，致力於協助香港企業更智能地工作。我們相信，每家公司 — 從初創企業到大型企業 — 都應該能夠使用強大的自動化工具。">Sudo is an AI automation studio helping Hong Kong businesses work smarter. We believe that every company — from startups to enterprises — deserves access to powerful automation tools.</p>
+        <p data-en="Minow is an AI automation studio helping Hong Kong businesses work smarter. We believe that every company — from startups to enterprises — deserves access to powerful automation tools." data-zh="Minow 是一家 AI 自動化工作室，致力於協助香港企業更智能地工作。我們相信，每家公司 — 從初創企業到大型企業 — 都應該能夠使用強大的自動化工具。">Minow is an AI automation studio helping Hong Kong businesses work smarter. We believe that every company — from startups to enterprises — deserves access to powerful automation tools.</p>
         <p data-en="We combine deep technical expertise with a practical understanding of local business needs. No jargon, no unnecessary complexity — just solutions that work." data-zh="我們將深厚的技術專業知識與對本地商業需求的實際理解相結合。沒有行話，沒有不必要的複雜性 — 只有有效的解決方案。">We combine deep technical expertise with a practical understanding of local business needs. No jargon, no unnecessary complexity — just solutions that work.</p>
         <p data-en="Our team brings experience from working with businesses across industries — from F&B and retail to logistics and finance. We understand the unique challenges Hong Kong companies face and build solutions that address them directly." data-zh="我們的團隊擁有跨行業的豐富經驗 — 從餐飲和零售到物流和金融。我們了解香港企業面臨的獨特挑戰，並構建直接解決這些問題的方案。">Our team brings experience from working with businesses across industries — from F&B and retail to logistics and finance. We understand the unique challenges Hong Kong companies face and build solutions that address them directly.</p>
       </div>
-      <div class="about-features fade-up">
-        <div class="about-feature">
-          <div class="about-feature-icon">🎯</div>
+      <div class="about-features stagger-children">
+        <div class="about-feature fade-up">
+          <div class="about-feature-icon"><img src="photos/results.jpg" alt="Results"></div>
           <div>
             <h4 data-en="Results-Driven" data-zh="以結果為導向">Results-Driven</h4>
             <p data-en="Every solution is measured by the impact it creates for your business." data-zh="每個解決方案都以對你業務的影響來衡量。">Every solution is measured by the impact it creates for your business.</p>
           </div>
         </div>
-        <div class="about-feature">
-          <div class="about-feature-icon">🔒</div>
+        <div class="about-feature fade-up">
+          <div class="about-feature-icon"><img src="photos/security.jpg" alt="Security"></div>
           <div>
             <h4 data-en="Data Privacy First" data-zh="數據隱私優先">Data Privacy First</h4>
             <p data-en="Your data stays in Hong Kong. We comply with PDPO and global privacy standards." data-zh="你的數據留在香港。我們遵守 PDPO 及全球隱私標準。">Your data stays in Hong Kong. We comply with PDPO and global privacy standards.</p>
           </div>
         </div>
-        <div class="about-feature">
-          <div class="about-feature-icon">🤝</div>
+        <div class="about-feature fade-up">
+          <div class="about-feature-icon"><img src="photos/partnership.jpg" alt="Partnership"></div>
           <div>
             <h4 data-en="Long-Term Partnership" data-zh="長期合作夥伴">Long-Term Partnership</h4>
             <p data-en="We don't just build and leave. We grow with your business." data-zh="我們不只是建造然後離開。我們與你的業務一起成長。">We don't just build and leave. We grow with your business.</p>
           </div>
         </div>
-        <div class="about-feature">
-          <div class="about-feature-icon">💡</div>
+        <div class="about-feature fade-up">
+          <div class="about-feature-icon"><img src="photos/innovation.jpg" alt="Innovation"></div>
           <div>
             <h4 data-en="Cutting-Edge Tech" data-zh="前沿技術">Cutting-Edge Tech</h4>
             <p data-en="We use the latest AI models and automation platforms to deliver the best results." data-zh="我們使用最新的 AI 模型和自動化平台來提供最佳效果。">We use the latest AI models and automation platforms to deliver the best results.</p>
@@ -95,12 +96,11 @@
   <div class="container">
     <p style="text-align: center; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 32px; font-weight: 500;" data-en="Tools We Use" data-zh="我們使用的工具">Tools We Use</p>
     <div class="brand-strip">
-      <img src="https://cdn.simpleicons.org/zai/4f46e5" alt="Z.AI" class="brand-logo" style="height: 28px;">
-      <img src="https://cdn.simpleicons.org/x/ffffff" alt="Grok" class="brand-logo" style="height: 28px; filter: invert(1) brightness(0.5);">
-      <img src="https://cdn.simpleicons.org/anthropic/d4a574" alt="Claude" class="brand-logo" style="height: 28px;">
-      <img src="https://cdn.simpleicons.org/n8n/ea4c89" alt="n8n" class="brand-logo" style="height: 36px;">
-      <img src="https://cdn.simpleicons.org/railway/0b0d0e" alt="Railway" class="brand-logo" style="height: 28px;">
-      <img src="https://cdn.simpleicons.org/twilio/f22f46" alt="Twilio" class="brand-logo" style="height: 36px;">
+      <img src="https://cdn.simpleicons.org/anthropic/0a1527" alt="Anthropic" class="brand-logo" style="height: 28px;">
+      <img src="https://cdn.simpleicons.org/x/0a1527" alt="Grok" class="brand-logo" style="height: 28px;">
+      <img src="https://cdn.simpleicons.org/n8n/0a1527" alt="n8n" class="brand-logo" style="height: 36px;">
+      <img src="https://cdn.simpleicons.org/railway/0a1527" alt="Railway" class="brand-logo" style="height: 28px;">
+      <img src="icons/aws.svg" alt="AWS" class="brand-logo" style="height: 28px;">
     </div>
   </div>
 </section>
@@ -110,17 +110,23 @@
   <div class="container fade-up">
     <h2 class="section-title" style="margin-bottom: 16px;" data-en="Let's work together" data-zh="讓我們一起合作">Let's work together</h2>
     <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto;" data-en="Ready to see what AI can do for your business?" data-zh="準備好看看 AI 能為你的業務做些什麼了嗎？">Ready to see what AI can do for your business?</p>
-    <a href="contact.html" class="btn-cta" style="display: inline-block; padding: 14px 36px; font-size: 1rem;" data-en="Get in Touch" data-zh="聯絡我們">Get in Touch</a>
+    <a href="booking.html" class="btn-cta" style="display: inline-block; padding: 14px 36px; font-size: 1rem;" data-en="Get in Touch" data-zh="聯絡我們">Get in Touch</a>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="container">
-    <p>© 2025 Sudo. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">Based in Hong Kong</span></p>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:0.85rem;">© 2025 Minow. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
+    <div style="display:flex;gap:20px;font-size:0.8rem;">
+      <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
+      <a href="terms.html" style="color:var(--accent);">使用條款</a>
+      <a href="demo.html" style="color:var(--accent);">功能示範</a>
+    </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
+<a href="https://wa.me/85200000000" target="_blank" class="wa-float"><span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </body>
 </html>

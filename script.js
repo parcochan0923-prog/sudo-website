@@ -1,3 +1,90 @@
+// ===== Shared Navbar & Footer =====
+const NAV_ITEMS = [
+  { href: 'index.html', en: 'Home', zh: '首頁' },
+  { href: 'services.html', en: 'Solutions', zh: '方案' },
+  { href: 'demo.html', en: 'Live Demo', zh: '功能示範' },
+  { href: 'about.html', en: 'About', zh: '關於我們' },
+  { href: 'contact.html', en: 'Contact', zh: '聯絡我們' },
+];
+
+function injectNavbar() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  const navItemsHTML = NAV_ITEMS.map(item => {
+    const isActive = item.href === page ? ' class="active"' : '';
+    return `<a href="${item.href}"${isActive} data-en="${item.en}" data-zh="${item.zh}">${item.zh}</a>`;
+  }).join('');
+
+  const mobileItemsHTML = NAV_ITEMS.map(item => {
+    return `<a href="${item.href}" data-en="${item.en}" data-zh="${item.zh}">${item.zh}</a>`;
+  }).join('');
+
+  const navbarHTML = `
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><img src="Minow.ai_logo.png" alt="Minow.ai" height="60"></a>
+      <div class="nav-links">
+        ${navItemsHTML}
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle">中文</button>
+        <a href="booking.html" class="btn-cta" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30分鐘免費諮詢</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    ${mobileItemsHTML}
+    <a href="booking.html" class="btn-cta" style="text-align:center;" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30分鐘免費諮詢</a>
+  </div>`;
+
+  // Replace existing navbar + mobile menu
+  const oldNav = document.querySelector('.navbar');
+  const oldMobile = document.querySelector('.mobile-menu');
+  const temp = document.createElement('div');
+  temp.innerHTML = navbarHTML;
+  if (oldNav) oldNav.replaceWith(temp.querySelector('.navbar'));
+  if (oldMobile) oldMobile.replaceWith(temp.querySelector('.mobile-menu'));
+}
+
+function injectFooter() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  const footerHTML = `
+  <footer class="footer">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div style="font-size:0.85rem;">© 2026 Minow.ai. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
+      <div style="display:flex;gap:20px;font-size:0.8rem;">
+        <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
+        <a href="terms.html" style="color:var(--accent);">使用條款</a>
+        <a href="demo.html" style="color:var(--accent);">功能示範</a>
+      </div>
+    </div>
+  </footer>`;
+
+  const oldFooter = document.querySelector('.footer');
+  const temp = document.createElement('div');
+  temp.innerHTML = footerHTML;
+  if (oldFooter) oldFooter.replaceWith(temp.querySelector('.footer'));
+}
+
+function injectWhatsApp() {
+  if (document.querySelector('.wa-float')) return;
+  const wa = document.createElement('a');
+  wa.href = 'https://wa.me/85259134629';
+  wa.target = '_blank';
+  wa.className = 'wa-float';
+  wa.innerHTML = '<span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>';
+  document.body.appendChild(wa);
+}
+
+// Inject shared components on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  injectNavbar();
+  injectFooter();
+  injectWhatsApp();
+});
+
 // ===== Page Transition =====
 document.body.classList.add('page-enter');
 window.addEventListener('load', () => {
@@ -111,71 +198,51 @@ function runHeroAnimation() {
   resetHeroLines();
 
   // Phase 1: Fade in "Minow" (0.3s - 1.1s)
-  line1.innerHTML = '<span style="display:inline-block">Min</span><span style="display:inline-block">ow</span>';
+  line1.textContent = 'Minow';
   line1.style.opacity = '0';
-  line1.style.transition = 'opacity 0.8s ease';
+  line1.style.transition = 'opacity 0.8s ease, color 0.5s ease';
   line1.style.display = 'inline-block';
   line1.style.letterSpacing = '-1.5px';
   line1.style.fontSize = 'clamp(2.8rem, 6vw, 4.5rem)';
   line1.style.fontWeight = '800';
+  line1.style.color = 'var(--text-dark)';
 
   heroTimeouts.push(setTimeout(() => {
     line1.style.opacity = '1';
   }, 300));
 
-  // Phase 2: Split into "Min" (black) + "now" (blue), extra "n" appears (1.8s)
+  // Phase 2: "Minow" turns blue (1.8s)
   heroTimeouts.push(setTimeout(() => {
     line1.style.letterSpacing = 'normal';
-    line1.innerHTML = '<span class="hero-part-min" style="display:inline-block;color:var(--text-dark);transition:all 0.5s cubic-bezier(0.4,0,0.2,1)">Min</span><span class="hero-part-n" style="display:inline-block;opacity:0;color:var(--accent);transition:all 0.4s ease">n</span><span class="hero-part-ow" style="display:inline-block;color:var(--text-dark);transition:all 0.3s ease 0.1s">ow</span>';
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // "n" fades in
-        const n = line1.querySelector('.hero-part-n');
-        if (n) { n.style.opacity = '1'; }
-
-        // "ow" turns blue
-        const ow = line1.querySelector('.hero-part-ow');
-        if (ow) { ow.style.color = 'var(--accent)'; }
-      });
-    });
+    line1.style.color = 'var(--accent)';
   }, 1800));
 
-  // Phase 3: "Min" types out "imize your work " and connects to "now" (2.8s)
+  // Phase 3: "Min" types out "imize your work " (2.8s)
   heroTimeouts.push(setTimeout(() => {
     const lang = currentLang || 'en';
 
-    if (lang === 'en') {
+
       const rest = 'imize your work ';
       let i = 0;
-      const nPart = line1.querySelector('.hero-part-n');
+
+      line1.innerHTML = '<span style="color:var(--accent)">Min</span>';
 
       function typeNext() {
         if (i < rest.length) {
           const span = document.createElement('span');
           span.textContent = rest[i];
           span.style.color = 'var(--text-dark)';
-          line1.insertBefore(span, nPart);
+          line1.appendChild(span);
           i++;
           heroTimeouts.push(setTimeout(typeNext, 55));
         } else {
-          line1.style.cssText = '';
           line2.style.cssText = '';
           line2.classList.add('gradient');
-          line1.textContent = 'Minimize your work ';
           line2.textContent = 'now.';
         }
       }
       typeNext();
-    } else {
-      // Chinese: same English slogan with typing animation
-      line1.style.cssText = '';
-      line2.style.cssText = '';
-      line2.classList.add('gradient');
-      typeText(line1, 'Minimize your work ', 55).then(() => {
-        return typeText(line2, 'now.', 55);
-      });
-    }
+   
   }, 2800));
 }
 

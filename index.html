@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minow — AI Automation for Hong Kong Businesses</title>
-  <meta name="description" content="Minow helps Hong Kong businesses simplify operations through AI automation, custom software, and website development. Minimize your work now.">
+  <title>Minow.ai — AI Automation for Hong Kong Businesses</title>
+  <meta name="description" content="Minow.ai helps Hong Kong businesses simplify operations through AI automation, custom software, and website development. Minimize your work now.">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="Minow.ai_logo.png" type="image/png">
 </head>
 <body>
 
 <!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Minow" height="52"></a>
+    <a href="index.html" class="nav-logo"><img src="Minow.ai_logo.png" alt="Minow.ai" height="60"></a>
     <div class="nav-links">
       <a href="index.html" data-en="Home" data-zh="首頁" class="active">Home</a>
-      <a href="services.html" data-en="Services" data-zh="服務">Services</a>
+      <a href="services.html" data-en="Solutions" data-zh="方案">Solutions</a>
+      <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
       <a href="about.html" data-en="About" data-zh="關於我們">About</a>
       <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
-      <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
     </div>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle">中文</button>
-      <a href="booking.html" class="btn-cta" data-en="Book a Consultation" data-zh="預約諮詢">Book a Consultation</a>
+      <a href="booking.html" class="btn-cta" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -34,74 +34,53 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
-  <a href="services.html" data-en="Services" data-zh="服務">Services</a>
+  <a href="services.html" data-en="Solutions" data-zh="方案">Solutions</a>
+  <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
   <a href="about.html" data-en="About" data-zh="關於我們">About</a>
   <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
-  <a href="booking.html" class="btn-cta" style="text-align:center;" data-en="Book a Consultation" data-zh="預約諮詢">Book a Consultation</a>
+  <a href="booking.html" class="btn-cta" style="text-align:center;" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
 </div>
 
-<!-- Hero -->
-<section class="hero">
+<!-- Hero (compact for above-fold) -->
+<section class="hero compact">
   <div class="mesh-gradient"></div>
-  <div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-  </div>
   <div class="hero-line hero-line-1"></div>
   <div class="hero-line hero-line-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge" data-en="AI Automation Studio in Hong Kong" data-zh="香港 AI 自動化工作室">AI Automation Studio in Hong Kong</div>
+      <div class="hero-badge" data-en="AI Automation Studio in Hong Kong" data-zh="幫香港中小企獲客，降本，提效。">AI Automation Studio in Hong Kong</div>
       <h1>
         <span id="heroLine1"></span><br>
         <span class="gradient" id="heroLine2"></span>
       </h1>
       <p class="tagline-cn" data-en="" data-zh="用 AI 重新定義你的工作效率"></p>
-      <p data-en="We help Hong Kong businesses simplify operations, automate workflows, and build smarter systems — powered by AI." data-zh="我們協助香港企業簡化營運、自動化工作流程，並構建更智能的系統 — 由 AI 驅動。">We help Hong Kong businesses simplify operations, automate workflows, and build smarter systems — powered by AI.</p>
       <div class="hero-buttons">
-        <a href="booking.html" class="btn-cta" data-en="Book Free Consultation" data-zh="預約免費諮詢">Book Free Consultation</a>
-        <a href="services.html" class="btn-cta-outline" data-en="Explore Services" data-zh="了解更多">Explore Services</a>
+        <a href="booking.html" class="btn-cta" style="background:#00052a;color:#08ffff;" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
+        <a href="services.html" class="btn-cta-outline" style="border-color:#00052a;color:#00052a;" data-en="Explore Solutions" data-zh="了解更多">Explore Solutions</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Trusted Tools -->
-<section style="padding: 50px 0; background: var(--bg-white); border-bottom: 1px solid rgba(0,0,0,0.04);">
+<!-- 一句話案例 -->
+<section class="case-section">
   <div class="container">
-    <p style="text-align: center; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 32px; font-weight: 500;" data-en="Powered by" data-zh="技術合作夥伴">Powered by</p>
-    <div class="brand-strip">
-      <img src="https://cdn.simpleicons.org/anthropic/0a1527" alt="Anthropic" class="brand-logo" style="height: 28px;">
-      <img src="https://cdn.simpleicons.org/x/0a1527" alt="Grok" class="brand-logo" style="height: 28px;">
-      <img src="https://cdn.simpleicons.org/n8n/0a1527" alt="n8n" class="brand-logo" style="height: 36px;">
-      <img src="https://cdn.simpleicons.org/railway/0a1527" alt="Railway" class="brand-logo" style="height: 28px;">
-      <img src="icons/aws.svg" alt="AWS" class="brand-logo" style="height: 28px;">
-    </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="stats-section" style="background: linear-gradient(135deg, #060e1a 0%, #0a1527 50%, #0f1d35 100%); color: #fff; padding: 80px 0;">
-  <div class="container">
-    <div class="stats-grid stagger-children">
-      <div class="stat-item fade-up">
-        <div class="stat-number"><span data-count="60" data-suffix="%" data-prefix="-">0</span></div>
-        <div class="stat-label" data-en="Operating Cost Reduced" data-zh="營運成本降低">營運成本降低</div>
+    <div class="case-section-label" data-en="One-Line Case Studies" data-zh="一句話案例">一句話案例</div>
+    <div class="case-grid stagger-children">
+      <div class="case-bubble fade-up">
+        <div class="case-number">-200工時</div>
+        <div class="case-title" data-en="AI Inventory Management" data-zh="AI庫存管理">AI庫存管理</div>
+        <div class="case-subtitle" data-en="Small logistics company" data-zh="小型物流公司">小型物流公司</div>
       </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number"><span data-count="300" data-suffix="%">0</span></div>
-        <div class="stat-label" data-en="Efficiency Boost" data-zh="效率提升">效率提升</div>
+      <div class="case-bubble fade-up">
+        <div class="case-number">+300%</div>
+        <div class="case-title" data-en="AI Product Listing Assistant" data-zh="AI新品上架助理">AI新品上架助理</div>
+        <div class="case-subtitle" data-en="Cross-border e-commerce brand" data-zh="跨境電商品牌">跨境電商品牌</div>
       </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number"><span data-count="45" data-suffix="%" data-prefix="+">0</span></div>
-        <div class="stat-label" data-en="Profit Increase" data-zh="利潤增長">利潤增長</div>
-      </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number" style="color: var(--accent);">24/7</div>
-        <div class="stat-label" data-en="AI Works Around the Clock" data-zh="AI 全天候運作">AI 全天候運作</div>
+      <div class="case-bubble fade-up">
+        <div class="case-number">+20%</div>
+        <div class="case-title" data-en="AI Auto Follow-up Agent" data-zh="AI自動跟單專員">AI自動跟單專員</div>
+        <div class="case-subtitle" data-en="Japanese trend toy shop" data-zh="日式潮玩店">日式潮玩店</div>
       </div>
     </div>
   </div>
@@ -120,7 +99,7 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-    <div style="font-size:0.85rem;">© 2025 Minow. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
+    <div style="font-size:0.85rem;">© 2026 Minow.ai. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
     <div style="display:flex;gap:20px;font-size:0.8rem;">
       <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
       <a href="terms.html" style="color:var(--accent);">使用條款</a>
@@ -130,6 +109,6 @@
 </footer>
 
 <script src="script.js"></script>
-<a href="https://wa.me/85200000000" target="_blank" class="wa-float"><span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<a href="https://wa.me/85259134629" target="_blank" class="wa-float"><span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </body>
 </html>

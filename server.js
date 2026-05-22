@@ -242,7 +242,7 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Minow website running on http://localhost:${PORT}`);
   console.log(`Contact emails will be sent to: ${process.env.CONTACT_EMAIL || 'NOT SET'}`);
   if (!process.env.SMTP_USER || process.env.SMTP_PASS === 'your-app-password') {

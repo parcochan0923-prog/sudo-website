@@ -11,10 +11,14 @@
       background: linear-gradient(135deg, #0a1527, #0f1d35);
       color: #fff; padding: 12px 24px; text-align: center;
       font-size: 0.85rem; color: rgba(255,255,255,0.7);
-      position: sticky; top: 80px; z-index: 100;
+      position: sticky; top: 96px; z-index: 100;
       border-bottom: 1px solid rgba(0,212,254,0.15);
+      margin-top: 96px;
     }
     .demo-banner span { color: var(--accent); font-weight: 600; }
+    @media (max-width: 768px) {
+      .demo-banner { top: 84px; margin-top: 84px; padding: 10px 16px; line-height: 1.45; }
+    }
 
     /* Tabs */
     .demo-tabs {
@@ -277,12 +281,12 @@
   <span data-en="⚡ This is a" data-zh="⚡ 這是">⚡ 這是</span><span data-en=" demo version" data-zh="示範版本">示範版本</span><span data-en=" — All data is simulated, showcasing features we can build for you" data-zh=" — 所有數據均為模擬，展示我們能為您打造的功能"> — 所有數據均為模擬，展示我們能為您打造的功能</span>
 </div>
 
-<section style="padding: 120px 0 40px; background: var(--bg-white);">
+<section style="padding: 48px 0 40px; background: var(--bg-white);">
   <div class="container">
     <div class="fade-up" style="text-align: center; max-width: 600px; margin: 0 auto;">
-      <div class="section-label">功能示範</div>
-      <h1 class="section-title">看看我們能為你打造什麼</h1>
-      <p class="section-desc" style="margin-left: auto; margin-right: auto;">以下係互動示範，全部可以根據你嘅業務需求度身訂造。</p>
+      <div class="section-label" data-en="LIVE DEMO" data-zh="功能示範">功能示範</div>
+      <h1 class="section-title" data-en="See what we can build for you" data-zh="看看我們能為你打造什麼">看看我們能為你打造什麼</h1>
+      <p class="section-desc" style="margin-left: auto; margin-right: auto;" data-en="These are interactive demos. Every workflow can be tailored to your operation." data-zh="以下係互動示範，全部可以根據你嘅業務需求度身訂造。">以下係互動示範，全部可以根據你嘅業務需求度身訂造。</p>
     </div>
   </div>
 </section>
@@ -292,36 +296,36 @@
 
     <!-- Tabs -->
     <div class="demo-tabs fade-up">
-      <button class="demo-tab active" onclick="switchTab('dashboard')">📊 智能儀表板</button>
-      <button class="demo-tab" onclick="switchTab('cs-chat')">💬 AI 客服機械人</button>
-      <button class="demo-tab" onclick="switchTab('workflow')">🔄 工作流程自動化</button>
-      <button class="demo-tab" onclick="switchTab('doc-ai')">📄 AI 文件分析</button>
+      <button class="demo-tab active" onclick="switchTab('dashboard')" data-en="📊 Smart Dashboard" data-zh="📊 智能儀表板">📊 智能儀表板</button>
+      <button class="demo-tab" onclick="switchTab('cs-chat')" data-en="💬 AI Customer Service" data-zh="💬 AI 客服機械人">💬 AI 客服機械人</button>
+      <button class="demo-tab" onclick="switchTab('workflow')" data-en="🔄 Workflow Automation" data-zh="🔄 工作流程自動化">🔄 工作流程自動化</button>
+      <button class="demo-tab" onclick="switchTab('doc-ai')" data-en="📄 AI Document Analysis" data-zh="📄 AI 文件分析">📄 AI 文件分析</button>
     </div>
 
     <!-- ===== Panel 1: Dashboard ===== -->
     <div class="demo-panel active" id="panel-dashboard">
       <div class="dashboard fade-up">
         <div class="dash-header">
-          <h3>📦 庫存管理儀表板</h3>
+          <h3 data-en="📦 Inventory Management Dashboard" data-zh="📦 庫存管理儀表板">📦 庫存管理儀表板</h3>
           <div class="dash-header-right">
-            <span class="dash-badge">AI 已啟用</span>
+            <span class="dash-badge" data-en="AI Enabled" data-zh="AI 已啟用">AI 已啟用</span>
             <span style="font-size: 0.8rem; color: var(--text-muted);">Demo Co. Ltd.</span>
           </div>
         </div>
         <div class="dash-body">
           <div class="kpi-grid">
-            <div class="kpi-card"><div class="kpi-label">總庫存量</div><div class="kpi-value" id="kpiStock">0</div><div class="kpi-change up">▲ 12% vs 上月</div></div>
-            <div class="kpi-card"><div class="kpi-label">本月訂單</div><div class="kpi-value" id="kpiOrders">0</div><div class="kpi-change up">▲ 23% vs 上月</div></div>
-            <div class="kpi-card"><div class="kpi-label">月營收</div><div class="kpi-value" id="kpiRevenue">$0</div><div class="kpi-change up">▲ 18% vs 上月</div></div>
-            <div class="kpi-card"><div class="kpi-label">低庫存警告</div><div class="kpi-value" style="color:#ef4444;" id="kpiAlert">0</div><div class="kpi-change down">需要補貨</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Total Stock" data-zh="總庫存量">總庫存量</div><div class="kpi-value" id="kpiStock">0</div><div class="kpi-change up" data-en="▲ 12% vs last month" data-zh="▲ 12% vs 上月">▲ 12% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Orders This Month" data-zh="本月訂單">本月訂單</div><div class="kpi-value" id="kpiOrders">0</div><div class="kpi-change up" data-en="▲ 23% vs last month" data-zh="▲ 23% vs 上月">▲ 23% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Monthly Revenue" data-zh="月營收">月營收</div><div class="kpi-value" id="kpiRevenue">$0</div><div class="kpi-change up" data-en="▲ 18% vs last month" data-zh="▲ 18% vs 上月">▲ 18% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Low Stock Alerts" data-zh="低庫存警告">低庫存警告</div><div class="kpi-value" style="color:#ef4444;" id="kpiAlert">0</div><div class="kpi-change down" data-en="Restock needed" data-zh="需要補貨">需要補貨</div></div>
           </div>
           <div class="chart-section">
             <div class="chart-card">
-              <h4>月度銷售趨勢</h4>
+              <h4 data-en="Monthly Sales Trend" data-zh="月度銷售趨勢">月度銷售趨勢</h4>
               <div class="chart-bars" id="salesChart"></div>
             </div>
             <div class="chart-card">
-              <h4>庫存分佈</h4>
+              <h4 data-en="Inventory Mix" data-zh="庫存分佈">庫存分佈</h4>
               <div class="donut-container">
                 <div class="donut"><svg width="140" height="140" viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="none" stroke="#e5e7eb" stroke-width="16"/><circle cx="70" cy="70" r="55" fill="none" stroke="#00d4fe" stroke-width="16" stroke-dasharray="121 225" stroke-linecap="round"/><circle cx="70" cy="70" r="55" fill="none" stroke="#0a1527" stroke-width="16" stroke-dasharray="86 260" stroke-dashoffset="-121" stroke-linecap="round"/><circle cx="70" cy="70" r="55" fill="none" stroke="#33ddff" stroke-width="16" stroke-dasharray="69 277" stroke-dashoffset="-207" stroke-linecap="round"/></svg><div class="donut-center"><div class="value">2,847</div><div class="label">件</div></div></div>
                 <div class="donut-legend"><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#00d4fe"></div>電子 35%</div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#0a1527"></div>配件 25%</div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#33ddff"></div>其他 40%</div></div>
@@ -329,8 +333,8 @@
             </div>
           </div>
           <div class="table-card">
-            <h4>近期訂單</h4>
-            <div style="overflow-x:auto;"><table class="demo-table"><thead><tr><th>訂單編號</th><th>客戶</th><th>產品</th><th>金額</th><th>狀態</th></tr></thead><tbody>
+            <h4 data-en="Recent Orders" data-zh="近期訂單">近期訂單</h4>
+            <div style="overflow-x:auto;"><table class="demo-table"><thead><tr><th data-en="Order ID" data-zh="訂單編號">訂單編號</th><th data-en="Customer" data-zh="客戶">客戶</th><th data-en="Product" data-zh="產品">產品</th><th data-en="Amount" data-zh="金額">金額</th><th data-en="Status" data-zh="狀態">狀態</th></tr></thead><tbody>
               <tr><td>#ORD-2847</td><td>陳先生</td><td>藍牙耳機 Pro</td><td>$1,280</td><td><span class="status-badge completed">已完成</span></td></tr>
               <tr><td>#ORD-2846</td><td>李公司</td><td>USB-C 充電器 x50</td><td>$4,500</td><td><span class="status-badge active">出貨中</span></td></tr>
               <tr><td>#ORD-2845</td><td>王女士</td><td>無線滑鼠</td><td>$380</td><td><span class="status-badge completed">已完成</span></td></tr>
@@ -345,26 +349,26 @@
     <!-- ===== Panel 2: AI CS Chat ===== -->
     <div class="demo-panel" id="panel-cs-chat">
       <div class="ai-chat-box fade-up">
-        <h4>💬 AI 客服機械人 — 自動處理客戶查詢</h4>
-        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;">以下示範 AI 如何 24/7 自動回覆客戶常見問題，支援 WhatsApp、網站及社交平台。</p>
+        <h4 data-en="💬 AI Customer Service — Handle customer queries automatically" data-zh="💬 AI 客服機械人 — 自動處理客戶查詢">💬 AI 客服機械人 — 自動處理客戶查詢</h4>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;" data-en="See how AI can answer common customer questions 24/7 across WhatsApp, websites, and social channels." data-zh="以下示範 AI 如何 24/7 自動回覆客戶常見問題，支援 WhatsApp、網站及社交平台。">以下示範 AI 如何 24/7 自動回覆客戶常見問題，支援 WhatsApp、網站及社交平台。</p>
         <div class="chat-window">
           <div class="chat-header">
             <div class="online-dot"></div>
-            <div><div>Minow Store 客服</div><div class="subtitle">線上 · 通常即時回覆</div></div>
+            <div><div data-en="Minow Store Support" data-zh="Minow Store 客服">Minow Store 客服</div><div class="subtitle" data-en="Online · Usually replies instantly" data-zh="線上 · 通常即時回覆">線上 · 通常即時回覆</div></div>
           </div>
           <div class="chat-messages" id="csChat">
-            <div class="chat-msg bot">你好！歡迎來到 Minow Store 🛍️ 我係你嘅 AI 客服助手，有咩幫到你？你可以問我關於訂單、退貨、送貨或者產品資訊。</div>
+            <div class="chat-msg bot" data-en="Hi! Welcome to Minow Store. I am your AI support assistant. Ask me about orders, returns, delivery, or product information." data-zh="你好！歡迎來到 Minow Store 🛍️ 我係你嘅 AI 客服助手，有咩幫到你？你可以問我關於訂單、退貨、送貨或者產品資訊。">你好！歡迎來到 Minow Store 🛍️ 我係你嘅 AI 客服助手，有咩幫到你？你可以問我關於訂單、退貨、送貨或者產品資訊。</div>
           </div>
           <div class="chat-suggestions" id="csSuggestions">
-            <button class="chat-sug-btn" onclick="csAsk(this)">我想查訂單狀態</button>
-            <button class="chat-sug-btn" onclick="csAsk(this)">退貨政策係點？</button>
-            <button class="chat-sug-btn" onclick="csAsk(this)">送貨要幾耐？</button>
-            <button class="chat-sug-btn" onclick="csAsk(this)">有冇優惠碼？</button>
-            <button class="chat-sug-btn" onclick="csAsk(this)">我想搵真人客服</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Check order status" data-zh="我想查訂單狀態">我想查訂單狀態</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="What is the return policy?" data-zh="退貨政策係點？">退貨政策係點？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="How long is delivery?" data-zh="送貨要幾耐？">送貨要幾耐？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Any promo code?" data-zh="有冇優惠碼？">有冇優惠碼？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Talk to human support" data-zh="我想搵真人客服">我想搵真人客服</button>
           </div>
           <div class="chat-input-bar">
-            <input type="text" id="csInput" placeholder="輸入訊息..." onkeydown="if(event.key==='Enter')csSend()">
-            <button class="chat-send-btn" onclick="csSend()">發送</button>
+            <input type="text" id="csInput" placeholder="輸入訊息..." data-ph-en="Type a message..." data-ph-zh="輸入訊息..." onkeydown="if(event.key==='Enter')csSend()">
+            <button class="chat-send-btn" onclick="csSend()" data-en="Send" data-zh="發送">發送</button>
           </div>
         </div>
       </div>
@@ -373,21 +377,21 @@
     <!-- ===== Panel 3: Workflow ===== -->
     <div class="demo-panel" id="panel-workflow">
       <div class="workflow-builder fade-up">
-        <h4>🔄 工作流程自動化 — 訂單處理流程</h4>
-        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px;">Click「運行流程」睇下 AI 如何自動化處理一個訂單，由收到訂單到發送通知，全程自動。</p>
+        <h4 data-en="🔄 Workflow Automation — Order processing flow" data-zh="🔄 工作流程自動化 — 訂單處理流程">🔄 工作流程自動化 — 訂單處理流程</h4>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px;" data-en="Click “Run workflow” to see how AI handles an order automatically from intake to notification." data-zh="Click「運行流程」睇下 AI 如何自動化處理一個訂單，由收到訂單到發送通知，全程自動。">Click「運行流程」睇下 AI 如何自動化處理一個訂單，由收到訂單到發送通知，全程自動。</p>
         <div class="wf-pipeline" id="wfPipeline">
-          <div class="wf-node" id="wf-1"><div class="wf-node-icon">📥</div><div class="wf-node-title">收到訂單</div><div class="wf-node-desc">客戶下單</div><div class="wf-node-status pending">等待中</div></div>
+          <div class="wf-node" id="wf-1"><div class="wf-node-icon">📥</div><div class="wf-node-title" data-en="Order received" data-zh="收到訂單">收到訂單</div><div class="wf-node-desc" data-en="Customer checkout" data-zh="客戶下單">客戶下單</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
           <div class="wf-arrow" id="wf-a1">→</div>
-          <div class="wf-node" id="wf-2"><div class="wf-node-icon">✅</div><div class="wf-node-title">驗證付款</div><div class="wf-node-desc">Stripe/PayPal</div><div class="wf-node-status pending">等待中</div></div>
+          <div class="wf-node" id="wf-2"><div class="wf-node-icon">✅</div><div class="wf-node-title" data-en="Verify payment" data-zh="驗證付款">驗證付款</div><div class="wf-node-desc">Stripe/PayPal</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
           <div class="wf-arrow" id="wf-a2">→</div>
-          <div class="wf-node" id="wf-3"><div class="wf-node-icon">📦</div><div class="wf-node-title">更新庫存</div><div class="wf-node-desc">ERP 同步</div><div class="wf-node-status pending">等待中</div></div>
+          <div class="wf-node" id="wf-3"><div class="wf-node-icon">📦</div><div class="wf-node-title" data-en="Update stock" data-zh="更新庫存">更新庫存</div><div class="wf-node-desc" data-en="ERP sync" data-zh="ERP 同步">ERP 同步</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
           <div class="wf-arrow" id="wf-a3">→</div>
-          <div class="wf-node" id="wf-4"><div class="wf-node-icon">🏷️</div><div class="wf-node-title">生成物流單</div><div class="wf-node-desc">SF Express</div><div class="wf-node-status pending">等待中</div></div>
+          <div class="wf-node" id="wf-4"><div class="wf-node-icon">🏷️</div><div class="wf-node-title" data-en="Create shipment" data-zh="生成物流單">生成物流單</div><div class="wf-node-desc">SF Express</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
           <div class="wf-arrow" id="wf-a4">→</div>
-          <div class="wf-node" id="wf-5"><div class="wf-node-icon">📧</div><div class="wf-node-title">發送通知</div><div class="wf-node-desc">Email + WhatsApp</div><div class="wf-node-status pending">等待中</div></div>
+          <div class="wf-node" id="wf-5"><div class="wf-node-icon">📧</div><div class="wf-node-title" data-en="Send notification" data-zh="發送通知">發送通知</div><div class="wf-node-desc">Email + WhatsApp</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
         </div>
         <div class="wf-log" id="wfLog"><span class="time">[--:--:--]</span> <span class="info">系統就緒</span> — 等待啟動流程...</div>
-        <button class="wf-run-btn" id="wfRunBtn" onclick="runWorkflow()">▶ 運行流程</button>
+        <button class="wf-run-btn" id="wfRunBtn" onclick="runWorkflow()" data-en="▶ Run workflow" data-zh="▶ 運行流程">▶ 運行流程</button>
       </div>
     </div>
 
@@ -395,27 +399,27 @@
     <div class="demo-panel" id="panel-doc-ai">
       <div class="doc-demo fade-up">
         <div class="doc-upload">
-          <h4>📄 選擇文件類型</h4>
-          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;">AI 自動識別並提取文件入面嘅重要資料，例如發票、合約、報價單。</p>
+          <h4 data-en="📄 Choose document type" data-zh="📄 選擇文件類型">📄 選擇文件類型</h4>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;" data-en="AI identifies and extracts key information from documents such as invoices, contracts, and receipts." data-zh="AI 自動識別並提取文件入面嘅重要資料，例如發票、合約、報價單。">AI 自動識別並提取文件入面嘅重要資料，例如發票、合約、報價單。</p>
           <div class="doc-samples">
-            <button class="doc-sample-btn active" onclick="selectDoc('invoice',this)">🧾 發票</button>
-            <button class="doc-sample-btn" onclick="selectDoc('contract',this)">📝 合約</button>
-            <button class="doc-sample-btn" onclick="selectDoc('receipt',this)">🧧 收據</button>
+            <button class="doc-sample-btn active" onclick="selectDoc('invoice',this)" data-en="🧾 Invoice" data-zh="🧾 發票">🧾 發票</button>
+            <button class="doc-sample-btn" onclick="selectDoc('contract',this)" data-en="📝 Contract" data-zh="📝 合約">📝 合約</button>
+            <button class="doc-sample-btn" onclick="selectDoc('receipt',this)" data-en="🧧 Receipt" data-zh="🧧 收據">🧧 收據</button>
           </div>
           <div class="doc-drop-zone" onclick="analyzeDoc()">
             <div class="icon">📁</div>
-            <p>Click 分析模擬文件</p>
+            <p data-en="Click to analyze a sample document" data-zh="Click 分析模擬文件">Click 分析模擬文件</p>
           </div>
-          <button class="btn-cta" style="width:100%;" onclick="analyzeDoc()">開始 AI 分析</button>
+          <button class="btn-cta" style="width:100%;" onclick="analyzeDoc()" data-en="Start AI Analysis" data-zh="開始 AI 分析">開始 AI 分析</button>
         </div>
         <div class="doc-result">
-          <h4>🔍 AI 提取結果</h4>
+          <h4 data-en="🔍 AI Extraction Results" data-zh="🔍 AI 提取結果">🔍 AI 提取結果</h4>
           <div id="docProcessing" class="doc-processing">
             <div class="doc-spinner"></div>
-            <p style="color:var(--text-muted);font-size:0.85rem;">AI 正在分析文件...</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;" data-en="AI is analyzing the document..." data-zh="AI 正在分析文件...">AI 正在分析文件...</p>
           </div>
           <div id="docFields">
-            <p style="color:var(--text-muted);font-size:0.85rem;text-align:center;padding:40px 0;">← 選擇文件類型並開始分析</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;text-align:center;padding:40px 0;" data-en="← Choose a document type and start analysis" data-zh="← 選擇文件類型並開始分析">← 選擇文件類型並開始分析</p>
           </div>
         </div>
       </div>
@@ -423,9 +427,9 @@
 
     <!-- CTA -->
     <div style="text-align: center; margin-top: 60px;" class="fade-up">
-      <h2 class="section-title" style="margin-bottom: 12px;">想要一個屬於你嘅系統？</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">以上只係示範。我哋可以根據你嘅業務需求，度身訂造更強大嘅系統。</p>
-      <a href="booking.html" class="btn-cta" style="display: inline-block; padding: 14px 36px;">免費諮詢</a>
+      <h2 class="section-title" style="margin-bottom: 12px;" data-en="Want a system built around your business?" data-zh="想要一個屬於你嘅系統？">想要一個屬於你嘅系統？</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;" data-en="These are only demos. We can tailor a stronger system around your actual workflows." data-zh="以上只係示範。我哋可以根據你嘅業務需求，度身訂造更強大嘅系統。">以上只係示範。我哋可以根據你嘅業務需求，度身訂造更強大嘅系統。</p>
+      <a href="booking.html" class="btn-cta" style="display: inline-block; padding: 14px 36px;" data-en="Free Consultation" data-zh="免費諮詢">免費諮詢</a>
     </div>
   </div>
 </section>

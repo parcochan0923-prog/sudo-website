@@ -120,7 +120,7 @@ async function createEvent(booking) {
   const calendar = google.calendar({ version: 'v3', auth: client });
   const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary';
 
-  const { name, email, company, service, date, timeStart, timeEnd, notes } = booking;
+  const { name, email, phone, company, service, date, timeStart, timeEnd, notes } = booking;
 
   const startDateTime = new Date(`${date}T${timeStart}:00+08:00`);
   const endDateTime = new Date(`${date}T${timeEnd}:00+08:00`);

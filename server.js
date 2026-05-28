@@ -6,7 +6,31 @@ const path = require('path');
 const calendar = require('./google-calendar');
 
 const app = express();
+app.disable('x-powered-by');
 const PORT = process.env.PORT || 8080;
+
+const SENSITIVE_FILES = new Set([
+  '.env',
+  'token.json',
+  'credentials.json',
+  'package.json',
+  'package-lock.json',
+  'server.js',
+  'google-calendar.js',
+]);
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function cleanHeaderText(value) {
+  return String(value ?? '').replace(/[\r\n]+/g, ' ').trim();
+}
 
 // Middleware
 app.use(cors());
@@ -14,6 +38,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files
+app.use((req, res, next) => {
+  const requestedName = path.basename(req.path).toLowerCase();
+  if (SENSITIVE_FILES.has(requestedName)) {
+    return res.status(404).send('Not found');
+  }
+  return next();
+});
 app.use(express.static(path.join(__dirname)));
 
 // ===== Google Calendar API Routes =====
@@ -168,6 +199,14 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeCompany = escapeHtml(company || 'N/A');
+    const safeService = escapeHtml(service || 'N/A');
+    const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
+    const subjectName = cleanHeaderText(name);
+    const subjectCompany = cleanHeaderText(company);
+
     // Create transporter
     // If SMTP credentials are set, use them; otherwise use ethereal test account
     let transporter;
@@ -202,21 +241,21 @@ app.post('/api/contact', async (req, res) => {
     await transporter.sendMail({
       from: `"Minow Website" <${process.env.SMTP_USER}>`,
       to: recipientEmail,
-      replyTo: email,
-      subject: `New Inquiry from ${name}${company ? ` (${company})` : ''}`,
+      replyTo: cleanHeaderText(email),
+      subject: `New Inquiry from ${subjectName}${subjectCompany ? ` (${subjectCompany})` : ''}`,
       html: `
         <div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background: #f8f8fc; border-radius: 12px;">
           <div style="background: #fff; border-radius: 12px; padding: 32px; border: 1px solid rgba(0,0,0,0.06);">
             <h2 style="margin: 0 0 24px; color: #0a1527; font-size: 1.3rem;">New Contact Form Submission</h2>
             <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem; width: 100px;">Name</td><td style="padding: 8px 0; font-weight: 600; color: #0a1527;">${name}</td></tr>
-              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Email</td><td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #00d4fe;">${email}</a></td></tr>
-              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Company</td><td style="padding: 8px 0; color: #0a1527;">${company || 'N/A'}</td></tr>
-              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Service</td><td style="padding: 8px 0; color: #0a1527;">${service || 'N/A'}</td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem; width: 100px;">Name</td><td style="padding: 8px 0; font-weight: 600; color: #0a1527;">${safeName}</td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Email</td><td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #00d4fe;">${safeEmail}</a></td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Company</td><td style="padding: 8px 0; color: #0a1527;">${safeCompany}</td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-size: 0.85rem;">Service</td><td style="padding: 8px 0; color: #0a1527;">${safeService}</td></tr>
             </table>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.06);">
               <p style="color: #6b7280; font-size: 0.85rem; margin: 0 0 8px;">Message:</p>
-              <p style="color: #0a1527; line-height: 1.7; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
+              <p style="color: #0a1527; line-height: 1.7; margin: 0;">${safeMessage}</p>
             </div>
           </div>
           <p style="text-align: center; color: #6b7280; font-size: 0.75rem; margin-top: 16px;">Sent from Minow Website Contact Form</p>

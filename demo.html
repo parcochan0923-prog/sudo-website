@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minow — 功能示範</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="Minow.ai_logo.png" type="image/png">
+  <style>
+    .demo-banner {
+      background: linear-gradient(135deg, #0a1527, #0f1d35);
+      color: #fff; padding: 12px 24px; text-align: center;
+      font-size: 0.85rem; color: rgba(255,255,255,0.7);
+      position: sticky; top: 96px; z-index: 100;
+      border-bottom: 1px solid rgba(0,212,254,0.15);
+      margin-top: 96px;
+    }
+    .demo-banner span { color: var(--accent); font-weight: 600; }
+    @media (max-width: 768px) {
+      .demo-banner { top: 84px; margin-top: 84px; padding: 10px 16px; line-height: 1.45; }
+    }
+
+    /* Tabs */
+    .demo-tabs {
+      display: flex; gap: 4px; max-width: 1100px; margin: 0 auto 24px;
+      background: var(--bg-light); border-radius: 12px; padding: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .demo-tab {
+      flex: 1; padding: 12px 16px; border-radius: 10px; border: none;
+      background: transparent; font-size: 0.85rem; font-weight: 500;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .demo-tab:hover { color: var(--text-dark); }
+    .demo-tab.active {
+      background: #fff; color: var(--text-dark); font-weight: 600;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .demo-panel { display: none; }
+    .demo-panel.active { display: block; }
+    @media (max-width: 640px) {
+      .demo-tabs { flex-wrap: wrap; }
+      .demo-tab { flex: none; width: calc(50% - 4px); font-size: 0.8rem; padding: 10px 8px; }
+    }
+
+    /* Dashboard */
+    .dashboard {
+      background: var(--bg-light); border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.06); overflow: hidden;
+      max-width: 1100px; margin: 0 auto;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+    .dash-header {
+      background: #fff; padding: 20px 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-dark); }
+    .dash-header-right { display: flex; gap: 12px; align-items: center; }
+    .dash-badge {
+      background: rgba(0,212,254,0.1); color: var(--accent); padding: 4px 12px;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+    .dash-body { padding: 28px; }
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: #fff; border-radius: var(--radius-sm); padding: 20px;
+      border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s ease;
+    }
+    .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .kpi-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .kpi-value { font-size: 1.8rem; font-weight: 800; color: var(--text-dark); }
+    .kpi-change { font-size: 0.8rem; margin-top: 4px; }
+    .kpi-change.up { color: #10b981; }
+    .kpi-change.down { color: #ef4444; }
+    .chart-section {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 28px;
+    }
+    @media (max-width: 768px) { .chart-section { grid-template-columns: 1fr; } }
+    .chart-card {
+      background: #fff; border-radius: var(--radius-sm); padding: 24px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .chart-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-dark); }
+    .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 180px; padding-top: 10px; }
+    .chart-bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .chart-bar {
+      width: 100%; border-radius: 4px 4px 0 0;
+      transition: height 1s cubic-bezier(0.4,0,0.2,1); cursor: pointer;
+    }
+    .chart-bar:hover { opacity: 0.8; }
+    .chart-bar-label { font-size: 0.65rem; color: var(--text-muted); }
+    .donut-container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; }
+    .donut { position: relative; width: 140px; height: 140px; }
+    .donut svg { transform: rotate(-90deg); }
+    .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .donut-center .value { font-size: 1.4rem; font-weight: 800; color: var(--text-dark); }
+    .donut-center .label { font-size: 0.7rem; color: var(--text-muted); }
+    .donut-legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+    .donut-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); }
+    .donut-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .table-card {
+      background: #fff; border-radius: var(--radius-sm); padding: 24px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .table-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-dark); }
+    .demo-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .demo-table th { text-align: left; padding: 10px 12px; border-bottom: 2px solid rgba(0,0,0,0.06); color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+    .demo-table td { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.04); color: var(--text-dark); }
+    .demo-table tr:hover td { background: rgba(0,212,254,0.02); }
+    .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .status-badge.completed { background: rgba(16,185,129,0.1); color: #10b981; }
+    .status-badge.pending { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .status-badge.active { background: rgba(0,212,254,0.1); color: #00d4fe; }
+
+    /* AI Chat shared */
+    .ai-chat-box {
+      background: #fff; border-radius: var(--radius-sm); padding: 24px;
+      border: 1px solid rgba(0,0,0,0.06); max-width: 1100px; margin: 0 auto;
+    }
+    .ai-chat-box h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-dark); }
+    .chat-window {
+      border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden;
+    }
+    .chat-header {
+      background: var(--accent-dark); color: #fff; padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px; font-size: 0.9rem; font-weight: 600;
+    }
+    .chat-header .online-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+    .chat-header .subtitle { font-size: 0.75rem; font-weight: 400; color: rgba(255,255,255,0.7); }
+    .chat-messages {
+      max-height: 400px; overflow-y: auto; padding: 20px;
+      display: flex; flex-direction: column; gap: 12px; background: #fafafa;
+    }
+    .chat-msg { max-width: 80%; padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; line-height: 1.6; }
+    .chat-msg.user { align-self: flex-end; background: var(--accent-dark); color: #fff; border-bottom-right-radius: 4px; }
+    .chat-msg.bot { align-self: flex-start; background: #fff; color: var(--text-dark); border-bottom-left-radius: 4px; border: 1px solid rgba(0,0,0,0.06); }
+    .chat-msg.bot .typing-dots span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); margin: 0 2px; animation: typingBounce 1.4s infinite ease-in-out; }
+    .chat-msg.bot .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-msg.bot .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
+    .chat-input-bar { display: flex; gap: 8px; padding: 16px 20px; border-top: 1px solid rgba(0,0,0,0.06); background: #fff; }
+    .chat-input-bar input { flex: 1; padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1); font-size: 0.85rem; outline: none; font-family: inherit; }
+    .chat-input-bar input:focus { border-color: var(--accent); }
+    .chat-send-btn { background: var(--accent-dark); color: #fff; border: none; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; }
+    .chat-send-btn:hover { opacity: 0.9; }
+    .chat-suggestions { display: flex; gap: 8px; padding: 0 20px 16px; flex-wrap: wrap; background: #fff; }
+    .chat-sug-btn { background: var(--bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+    .chat-sug-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Workflow */
+    .workflow-builder {
+      background: #fff; border-radius: var(--radius-sm); padding: 28px;
+      border: 1px solid rgba(0,0,0,0.06); max-width: 1100px; margin: 0 auto;
+    }
+    .workflow-builder h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; color: var(--text-dark); }
+    .wf-pipeline { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding-bottom: 20px; }
+    .wf-node {
+      min-width: 160px; background: var(--bg-light); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px; padding: 16px; text-align: center; flex-shrink: 0;
+      transition: all 0.3s ease; cursor: pointer; position: relative;
+    }
+    .wf-node:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,212,254,0.1); }
+    .wf-node.running { border-color: var(--accent); background: rgba(0,212,254,0.04); }
+    .wf-node.done { border-color: #10b981; background: rgba(16,185,129,0.04); }
+    .wf-node-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .wf-node-title { font-size: 0.8rem; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+    .wf-node-desc { font-size: 0.7rem; color: var(--text-muted); }
+    .wf-node-status { font-size: 0.65rem; font-weight: 600; margin-top: 8px; padding: 2px 8px; border-radius: 10px; display: inline-block; }
+    .wf-node-status.pending { background: rgba(0,0,0,0.06); color: var(--text-muted); }
+    .wf-node-status.running { background: rgba(0,212,254,0.15); color: var(--accent); }
+    .wf-node-status.done { background: rgba(16,185,129,0.15); color: #10b981; }
+    .wf-arrow { display: flex; align-items: center; padding: 0 4px; flex-shrink: 0; color: rgba(0,0,0,0.15); font-size: 1.2rem; margin-top: 24px; }
+    .wf-arrow.active { color: var(--accent); }
+    @media (max-width: 768px) {
+      .wf-pipeline { flex-direction: column; align-items: center; }
+      .wf-arrow { transform: rotate(90deg); margin: 0; padding: 8px 0; }
+    }
+
+    .wf-log {
+      background: #0a1527; border-radius: 10px; padding: 16px 20px; margin-top: 20px;
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.75rem; color: #10b981;
+      max-height: 180px; overflow-y: auto; line-height: 1.8;
+    }
+    .wf-log .time { color: rgba(255,255,255,0.3); }
+    .wf-log .info { color: #00d4fe; }
+    .wf-log .warn { color: #f59e0b; }
+    .wf-log .success { color: #10b981; }
+
+    .wf-run-btn {
+      background: var(--accent-dark); color: #fff; border: none;
+      padding: 12px 28px; border-radius: 10px; font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; margin-top: 16px;
+    }
+    .wf-run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .wf-run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* Document AI */
+    .doc-demo {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    @media (max-width: 768px) { .doc-demo { grid-template-columns: 1fr; } }
+    .doc-upload {
+      background: #fff; border-radius: var(--radius-sm); padding: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .doc-upload h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-dark); }
+    .doc-drop-zone {
+      border: 2px dashed rgba(0,0,0,0.1); border-radius: 12px; padding: 40px;
+      text-align: center; cursor: pointer; transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+    .doc-drop-zone:hover { border-color: var(--accent); background: rgba(0,212,254,0.02); }
+    .doc-drop-zone .icon { font-size: 2rem; margin-bottom: 12px; }
+    .doc-drop-zone p { color: var(--text-muted); font-size: 0.85rem; }
+    .doc-samples { display: flex; gap: 8px; flex-wrap: wrap; }
+    .doc-sample-btn {
+      background: var(--bg-light); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px; padding: 8px 14px; font-size: 0.8rem; cursor: pointer;
+      transition: all 0.2s ease; font-family: inherit;
+    }
+    .doc-sample-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .doc-sample-btn.active { background: rgba(0,212,254,0.1); border-color: var(--accent); color: var(--accent); }
+    .doc-result {
+      background: #fff; border-radius: var(--radius-sm); padding: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .doc-result h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-dark); }
+    .doc-field { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+    .doc-field-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .doc-field-value { font-size: 0.9rem; color: var(--text-dark); font-weight: 500; opacity: 0; transform: translateX(-10px); transition: all 0.4s ease; }
+    .doc-field-value.show { opacity: 1; transform: translateX(0); }
+    .doc-confidence { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .doc-confidence.high { background: rgba(16,185,129,0.1); color: #10b981; }
+    .doc-confidence.med { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .doc-processing { display: none; text-align: center; padding: 40px; }
+    .doc-processing.active { display: block; }
+    .doc-spinner { width: 40px; height: 40px; border: 3px solid rgba(0,0,0,0.06); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .demo-grid-2col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;
+    }
+    @media (max-width: 768px) { .demo-grid-2col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="Minow.ai_logo.png" alt="Minow.ai" height="48"></a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-zh="首頁">首頁</a>
+      <a href="services.html" data-en="Services" data-zh="服務">服務</a>
+      <a href="about.html" data-en="About" data-zh="關於我們">關於我們</a>
+      <a href="contact.html" data-en="Contact" data-zh="聯絡我們">聯絡我們</a>
+      <a href="demo.html" data-en="Live Demo" data-zh="功能示範" class="active">功能示範</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">EN</button>
+      <a href="booking.html" class="btn-cta" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30分鐘免費諮詢</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">首頁</a>
+  <a href="services.html">服務</a>
+  <a href="about.html">關於我們</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="demo.html">功能示範</a>
+</div>
+
+<div class="demo-banner">
+  <span data-en="⚡ This is a" data-zh="⚡ 這是">⚡ 這是</span><span data-en=" demo version" data-zh="示範版本">示範版本</span><span data-en=" — All data is simulated, showcasing features we can build for you" data-zh=" — 所有數據均為模擬，展示我們能為您打造的功能"> — 所有數據均為模擬，展示我們能為您打造的功能</span>
+</div>
+
+<section style="padding: 48px 0 40px; background: var(--bg-white);">
+  <div class="container">
+    <div class="fade-up" style="text-align: center; max-width: 600px; margin: 0 auto;">
+      <div class="section-label" data-en="LIVE DEMO" data-zh="功能示範">功能示範</div>
+      <h1 class="section-title" data-en="See what we can build for you" data-zh="看看我們能為你打造什麼">看看我們能為你打造什麼</h1>
+      <p class="section-desc" style="margin-left: auto; margin-right: auto;" data-en="These are interactive demos. Every workflow can be tailored to your operation." data-zh="以下係互動示範，全部可以根據你嘅業務需求度身訂造。">以下係互動示範，全部可以根據你嘅業務需求度身訂造。</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0 0 100px; background: var(--bg-white);">
+  <div class="container">
+
+    <!-- Tabs -->
+    <div class="demo-tabs fade-up">
+      <button class="demo-tab active" onclick="switchTab('dashboard')" data-en="📊 Smart Dashboard" data-zh="📊 智能儀表板">📊 智能儀表板</button>
+      <button class="demo-tab" onclick="switchTab('cs-chat')" data-en="💬 AI Customer Service" data-zh="💬 AI 客服機械人">💬 AI 客服機械人</button>
+      <button class="demo-tab" onclick="switchTab('workflow')" data-en="🔄 Workflow Automation" data-zh="🔄 工作流程自動化">🔄 工作流程自動化</button>
+      <button class="demo-tab" onclick="switchTab('doc-ai')" data-en="📄 AI Document Analysis" data-zh="📄 AI 文件分析">📄 AI 文件分析</button>
+    </div>
+
+    <!-- ===== Panel 1: Dashboard ===== -->
+    <div class="demo-panel active" id="panel-dashboard">
+      <div class="dashboard fade-up">
+        <div class="dash-header">
+          <h3 data-en="📦 Inventory Management Dashboard" data-zh="📦 庫存管理儀表板">📦 庫存管理儀表板</h3>
+          <div class="dash-header-right">
+            <span class="dash-badge" data-en="AI Enabled" data-zh="AI 已啟用">AI 已啟用</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Demo Co. Ltd.</span>
+          </div>
+        </div>
+        <div class="dash-body">
+          <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-label" data-en="Total Stock" data-zh="總庫存量">總庫存量</div><div class="kpi-value" id="kpiStock">0</div><div class="kpi-change up" data-en="▲ 12% vs last month" data-zh="▲ 12% vs 上月">▲ 12% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Orders This Month" data-zh="本月訂單">本月訂單</div><div class="kpi-value" id="kpiOrders">0</div><div class="kpi-change up" data-en="▲ 23% vs last month" data-zh="▲ 23% vs 上月">▲ 23% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Monthly Revenue" data-zh="月營收">月營收</div><div class="kpi-value" id="kpiRevenue">$0</div><div class="kpi-change up" data-en="▲ 18% vs last month" data-zh="▲ 18% vs 上月">▲ 18% vs 上月</div></div>
+            <div class="kpi-card"><div class="kpi-label" data-en="Low Stock Alerts" data-zh="低庫存警告">低庫存警告</div><div class="kpi-value" style="color:#ef4444;" id="kpiAlert">0</div><div class="kpi-change down" data-en="Restock needed" data-zh="需要補貨">需要補貨</div></div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-card">
+              <h4 data-en="Monthly Sales Trend" data-zh="月度銷售趨勢">月度銷售趨勢</h4>
+              <div class="chart-bars" id="salesChart"></div>
+            </div>
+            <div class="chart-card">
+              <h4 data-en="Inventory Mix" data-zh="庫存分佈">庫存分佈</h4>
+              <div class="donut-container">
+                <div class="donut"><svg width="140" height="140" viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="none" stroke="#e5e7eb" stroke-width="16"/><circle cx="70" cy="70" r="55" fill="none" stroke="#00d4fe" stroke-width="16" stroke-dasharray="121 225" stroke-linecap="round"/><circle cx="70" cy="70" r="55" fill="none" stroke="#0a1527" stroke-width="16" stroke-dasharray="86 260" stroke-dashoffset="-121" stroke-linecap="round"/><circle cx="70" cy="70" r="55" fill="none" stroke="#33ddff" stroke-width="16" stroke-dasharray="69 277" stroke-dashoffset="-207" stroke-linecap="round"/></svg><div class="donut-center"><div class="value">2,847</div><div class="label">件</div></div></div>
+                <div class="donut-legend"><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#00d4fe"></div>電子 35%</div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#0a1527"></div>配件 25%</div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#33ddff"></div>其他 40%</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="table-card">
+            <h4 data-en="Recent Orders" data-zh="近期訂單">近期訂單</h4>
+            <div style="overflow-x:auto;"><table class="demo-table"><thead><tr><th data-en="Order ID" data-zh="訂單編號">訂單編號</th><th data-en="Customer" data-zh="客戶">客戶</th><th data-en="Product" data-zh="產品">產品</th><th data-en="Amount" data-zh="金額">金額</th><th data-en="Status" data-zh="狀態">狀態</th></tr></thead><tbody>
+              <tr><td>#ORD-2847</td><td>陳先生</td><td>藍牙耳機 Pro</td><td>$1,280</td><td><span class="status-badge completed">已完成</span></td></tr>
+              <tr><td>#ORD-2846</td><td>李公司</td><td>USB-C 充電器 x50</td><td>$4,500</td><td><span class="status-badge active">出貨中</span></td></tr>
+              <tr><td>#ORD-2845</td><td>王女士</td><td>無線滑鼠</td><td>$380</td><td><span class="status-badge completed">已完成</span></td></tr>
+              <tr><td>#ORD-2844</td><td>張企業</td><td>平板保護殼 x100</td><td>$8,900</td><td><span class="status-badge pending">待確認</span></td></tr>
+              <tr><td>#ORD-2843</td><td>黃先生</td><td>智能手錶</td><td>$2,180</td><td><span class="status-badge completed">已完成</span></td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Panel 2: AI CS Chat ===== -->
+    <div class="demo-panel" id="panel-cs-chat">
+      <div class="ai-chat-box fade-up">
+        <h4 data-en="💬 AI Customer Service — Handle customer queries automatically" data-zh="💬 AI 客服機械人 — 自動處理客戶查詢">💬 AI 客服機械人 — 自動處理客戶查詢</h4>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;" data-en="See how AI can answer common customer questions 24/7 across WhatsApp, websites, and social channels." data-zh="以下示範 AI 如何 24/7 自動回覆客戶常見問題，支援 WhatsApp、網站及社交平台。">以下示範 AI 如何 24/7 自動回覆客戶常見問題，支援 WhatsApp、網站及社交平台。</p>
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="online-dot"></div>
+            <div><div data-en="Minow Store Support" data-zh="Minow Store 客服">Minow Store 客服</div><div class="subtitle" data-en="Online · Usually replies instantly" data-zh="線上 · 通常即時回覆">線上 · 通常即時回覆</div></div>
+          </div>
+          <div class="chat-messages" id="csChat">
+            <div class="chat-msg bot" data-en="Hi! Welcome to Minow Store. I am your AI support assistant. Ask me about orders, returns, delivery, or product information." data-zh="你好！歡迎來到 Minow Store 🛍️ 我係你嘅 AI 客服助手，有咩幫到你？你可以問我關於訂單、退貨、送貨或者產品資訊。">你好！歡迎來到 Minow Store 🛍️ 我係你嘅 AI 客服助手，有咩幫到你？你可以問我關於訂單、退貨、送貨或者產品資訊。</div>
+          </div>
+          <div class="chat-suggestions" id="csSuggestions">
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Check order status" data-zh="我想查訂單狀態">我想查訂單狀態</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="What is the return policy?" data-zh="退貨政策係點？">退貨政策係點？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="How long is delivery?" data-zh="送貨要幾耐？">送貨要幾耐？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Any promo code?" data-zh="有冇優惠碼？">有冇優惠碼？</button>
+            <button class="chat-sug-btn" onclick="csAsk(this)" data-en="Talk to human support" data-zh="我想搵真人客服">我想搵真人客服</button>
+          </div>
+          <div class="chat-input-bar">
+            <input type="text" id="csInput" placeholder="輸入訊息..." data-ph-en="Type a message..." data-ph-zh="輸入訊息..." onkeydown="if(event.key==='Enter')csSend()">
+            <button class="chat-send-btn" onclick="csSend()" data-en="Send" data-zh="發送">發送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Panel 3: Workflow ===== -->
+    <div class="demo-panel" id="panel-workflow">
+      <div class="workflow-builder fade-up">
+        <h4 data-en="🔄 Workflow Automation — Order processing flow" data-zh="🔄 工作流程自動化 — 訂單處理流程">🔄 工作流程自動化 — 訂單處理流程</h4>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px;" data-en="Click “Run workflow” to see how AI handles an order automatically from intake to notification." data-zh="Click「運行流程」睇下 AI 如何自動化處理一個訂單，由收到訂單到發送通知，全程自動。">Click「運行流程」睇下 AI 如何自動化處理一個訂單，由收到訂單到發送通知，全程自動。</p>
+        <div class="wf-pipeline" id="wfPipeline">
+          <div class="wf-node" id="wf-1"><div class="wf-node-icon">📥</div><div class="wf-node-title" data-en="Order received" data-zh="收到訂單">收到訂單</div><div class="wf-node-desc" data-en="Customer checkout" data-zh="客戶下單">客戶下單</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
+          <div class="wf-arrow" id="wf-a1">→</div>
+          <div class="wf-node" id="wf-2"><div class="wf-node-icon">✅</div><div class="wf-node-title" data-en="Verify payment" data-zh="驗證付款">驗證付款</div><div class="wf-node-desc">Stripe/PayPal</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
+          <div class="wf-arrow" id="wf-a2">→</div>
+          <div class="wf-node" id="wf-3"><div class="wf-node-icon">📦</div><div class="wf-node-title" data-en="Update stock" data-zh="更新庫存">更新庫存</div><div class="wf-node-desc" data-en="ERP sync" data-zh="ERP 同步">ERP 同步</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
+          <div class="wf-arrow" id="wf-a3">→</div>
+          <div class="wf-node" id="wf-4"><div class="wf-node-icon">🏷️</div><div class="wf-node-title" data-en="Create shipment" data-zh="生成物流單">生成物流單</div><div class="wf-node-desc">SF Express</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
+          <div class="wf-arrow" id="wf-a4">→</div>
+          <div class="wf-node" id="wf-5"><div class="wf-node-icon">📧</div><div class="wf-node-title" data-en="Send notification" data-zh="發送通知">發送通知</div><div class="wf-node-desc">Email + WhatsApp</div><div class="wf-node-status pending" data-en="Pending" data-zh="等待中">等待中</div></div>
+        </div>
+        <div class="wf-log" id="wfLog"><span class="time">[--:--:--]</span> <span class="info">系統就緒</span> — 等待啟動流程...</div>
+        <button class="wf-run-btn" id="wfRunBtn" onclick="runWorkflow()" data-en="▶ Run workflow" data-zh="▶ 運行流程">▶ 運行流程</button>
+      </div>
+    </div>
+
+    <!-- ===== Panel 4: Doc AI ===== -->
+    <div class="demo-panel" id="panel-doc-ai">
+      <div class="doc-demo fade-up">
+        <div class="doc-upload">
+          <h4 data-en="📄 Choose document type" data-zh="📄 選擇文件類型">📄 選擇文件類型</h4>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;" data-en="AI identifies and extracts key information from documents such as invoices, contracts, and receipts." data-zh="AI 自動識別並提取文件入面嘅重要資料，例如發票、合約、報價單。">AI 自動識別並提取文件入面嘅重要資料，例如發票、合約、報價單。</p>
+          <div class="doc-samples">
+            <button class="doc-sample-btn active" onclick="selectDoc('invoice',this)" data-en="🧾 Invoice" data-zh="🧾 發票">🧾 發票</button>
+            <button class="doc-sample-btn" onclick="selectDoc('contract',this)" data-en="📝 Contract" data-zh="📝 合約">📝 合約</button>
+            <button class="doc-sample-btn" onclick="selectDoc('receipt',this)" data-en="🧧 Receipt" data-zh="🧧 收據">🧧 收據</button>
+          </div>
+          <div class="doc-drop-zone" onclick="analyzeDoc()">
+            <div class="icon">📁</div>
+            <p data-en="Click to analyze a sample document" data-zh="Click 分析模擬文件">Click 分析模擬文件</p>
+          </div>
+          <button class="btn-cta" style="width:100%;" onclick="analyzeDoc()" data-en="Start AI Analysis" data-zh="開始 AI 分析">開始 AI 分析</button>
+        </div>
+        <div class="doc-result">
+          <h4 data-en="🔍 AI Extraction Results" data-zh="🔍 AI 提取結果">🔍 AI 提取結果</h4>
+          <div id="docProcessing" class="doc-processing">
+            <div class="doc-spinner"></div>
+            <p style="color:var(--text-muted);font-size:0.85rem;" data-en="AI is analyzing the document..." data-zh="AI 正在分析文件...">AI 正在分析文件...</p>
+          </div>
+          <div id="docFields">
+            <p style="color:var(--text-muted);font-size:0.85rem;text-align:center;padding:40px 0;" data-en="← Choose a document type and start analysis" data-zh="← 選擇文件類型並開始分析">← 選擇文件類型並開始分析</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 60px;" class="fade-up">
+      <h2 class="section-title" style="margin-bottom: 12px;" data-en="Want a system built around your business?" data-zh="想要一個屬於你嘅系統？">想要一個屬於你嘅系統？</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;" data-en="These are only demos. We can tailor a stronger system around your actual workflows." data-zh="以上只係示範。我哋可以根據你嘅業務需求，度身訂造更強大嘅系統。">以上只係示範。我哋可以根據你嘅業務需求，度身訂造更強大嘅系統。</p>
+      <a href="booking.html" class="btn-cta" style="display: inline-block; padding: 14px 36px;" data-en="Free Consultation" data-zh="免費諮詢">免費諮詢</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:0.85rem;">© 2026 Minow.ai. All rights reserved. · 立足香港</div>
+    <div style="display:flex;gap:20px;font-size:0.8rem;">
+      <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
+      <a href="terms.html" style="color:var(--accent);">使用條款</a>
+      <a href="demo.html" style="color:var(--accent);">功能示範</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ===== Tab switching =====
+function switchTab(id) {
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// ===== Dashboard: KPI animation =====
+(function() {
+  const kpis = [
+    { el: document.getElementById('kpiStock'), target: 2847 },
+    { el: document.getElementById('kpiOrders'), target: 384 },
+    { el: document.getElementById('kpiRevenue'), target: 128, prefix: '$', suffix: 'K' },
+    { el: document.getElementById('kpiAlert'), target: 7 },
+  ];
+  let animated = false;
+  function animate() {
+    if (animated) return; animated = true;
+    kpis.forEach(k => {
+      if (!k.el) return;
+      const start = performance.now();
+      (function upd(now) {
+        const p = Math.min((now - start) / 1500, 1);
+        const v = Math.floor(k.target * (1 - Math.pow(1 - p, 3)));
+        k.el.textContent = (k.prefix||'') + v.toLocaleString() + (k.suffix||'');
+        if (p < 1) requestAnimationFrame(upd);
+      })(start);
+    });
+  }
+  const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { animate(); obs.unobserve(e.target); } }); }, { threshold: 0.2 });
+  const db = document.querySelector('.dash-body'); if (db) obs.observe(db);
+
+  // Sales chart
+  const months = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  const sales = [42,55,38,67,72,85,63,91,78,95,88,105];
+  const mx = Math.max(...sales);
+  const chart = document.getElementById('salesChart');
+  months.forEach((m,i) => {
+    const g = document.createElement('div'); g.className = 'chart-bar-group';
+    const b = document.createElement('div'); b.className = 'chart-bar'; b.style.height = '0px';
+    b.style.background = i===months.length-1 ? 'var(--accent)' : i>=months.length-3 ? 'rgba(0,212,254,0.3)' : 'rgba(10,21,39,0.1)';
+    b.title = `${m}: ${sales[i]} 萬`;
+    const l = document.createElement('div'); l.className = 'chart-bar-label'; l.textContent = m;
+    g.appendChild(b); g.appendChild(l); chart.appendChild(g);
+    setTimeout(() => { b.style.height = `${(sales[i]/mx)*160}px`; }, 300 + i * 60);
+  });
+})();
+
+// ===== CS Chat =====
+const csResponses = {
+  '訂單': '請提供你嘅訂單編號（例如 #ORD-2847），我即刻幫你查。\n\n💡 示範：訂單 #ORD-2847\n📦 狀態：已出貨\n🚚 物流：SF Express - 派送中\n📅 預計送達：明日 12:00 前',
+  '退貨': '我哋嘅退貨政策如下：\n\n✅ 收貨後 14 日內可申請退貨\n✅ 產品必須未經使用及保持原包裝\n✅ 退款會喺 5-7 個工作天內處理\n\n要唔要我幫你開始退貨申請？',
+  '送貨': '送貨資訊如下：\n\n🇭🇰 香港：1-3 個工作天\n📦 免費送貨（訂單滿 $500）\n🚀 加急送貨：+$50（即日到）\n\n你嘅地址喺唔喺香港？',
+  '優惠': '🎉 而家有個限定優惠！\n\n🏷️ 使用折扣碼 <strong style="color:var(--accent)">MINOW20</strong>\n💰 全場 8 折\n⏰ 有效期至今晚 23:59\n\n要唔要我用呢個折扣碼幫你落單？',
+  '真人': '無問題！我幫你轉接真人客服。\n\n👨‍💼 目前等待人數：0 人\n📞 預計等待時間：即時\n\n✅ 已轉接 — 客服專員 Alex 而家會為你服務！',
+};
+const csDefaults = [
+  '收到你嘅訊息！讓我睇下⋯⋯根據系統記錄，你嘅帳戶一切正常。仲有其他問題嗎？',
+  '多謝你嘅查詢！我暫時搵唔到完全匹配嘅答案，你要唔要試下用其他關鍵字？或者我可以幫你轉真人客服。',
+  '明白！我記錄咗你嘅問題，我哋嘅團隊會喺 24 小時內回覆你。仲有咩可以幫到你？',
+];
+function csAsk(btn) { document.getElementById('csInput').value = btn.textContent; csSend(); }
+function csSend() {
+  const input = document.getElementById('csInput');
+  const msg = input.value.trim(); if (!msg) return; input.value = '';
+  const chat = document.getElementById('csChat');
+  chat.appendChild(Object.assign(document.createElement('div'), { className: 'chat-msg user', textContent: msg }));
+  const typing = document.createElement('div'); typing.className = 'chat-msg bot';
+  typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  chat.appendChild(typing); chat.scrollTop = chat.scrollHeight;
+  setTimeout(() => {
+    chat.removeChild(typing);
+    let resp = csDefaults[Math.floor(Math.random()*csDefaults.length)];
+    for (const [k,v] of Object.entries(csResponses)) { if (msg.includes(k)) { resp = v; break; } }
+    const ai = document.createElement('div'); ai.className = 'chat-msg bot';
+    ai.innerHTML = resp.replace(/\n/g,'<br>');
+    chat.appendChild(ai); chat.scrollTop = chat.scrollHeight;
+  }, 1000 + Math.random()*800);
+}
+
+// ===== Workflow =====
+function runWorkflow() {
+  const btn = document.getElementById('wfRunBtn'); btn.disabled = true;
+  const log = document.getElementById('wfLog'); log.innerHTML = '';
+  const steps = [
+    { id:1, log:'收到新訂單 #ORD-2848 — 客戶：趙女士，產品：藍牙耳機 Pro x2，金額 $2,560', delay:500 },
+    { id:2, log:'付款驗證通過 ✓ — Stripe Payment Intent pi_3xxx...confirmed', delay:1500 },
+    { id:3, log:'庫存已更新 — 藍牙耳機 Pro: 342 → 340 (扣除 2 件)', delay:2500 },
+    { id:4, log:'物流單已生成 — SF Express #SF7891234567，追蹤連結已建立', delay:3500 },
+    { id:5, log:'通知已發送 — Email ✓ WhatsApp ✓ 客戶已收到訂單確認', delay:4500 },
+  ];
+  // Reset all
+  for (let i=1;i<=5;i++) { const n=document.getElementById('wf-'+i); n.className='wf-node'; n.querySelector('.wf-node-status').className='wf-node-status pending'; n.querySelector('.wf-node-status').textContent='等待中'; }
+  for (let i=1;i<=4;i++) document.getElementById('wf-a'+i).className='wf-arrow';
+
+  steps.forEach(s => {
+    setTimeout(() => {
+      const node = document.getElementById('wf-'+s.id);
+      // Mark previous as done
+      if (s.id > 1) {
+        const prev = document.getElementById('wf-'+(s.id-1));
+        prev.className = 'wf-node done';
+        prev.querySelector('.wf-node-status').className = 'wf-node-status done';
+        prev.querySelector('.wf-node-status').textContent = '完成 ✓';
+        document.getElementById('wf-a'+(s.id-1)).className = 'wf-arrow active';
+      }
+      node.className = 'wf-node running';
+      node.querySelector('.wf-node-status').className = 'wf-node-status running';
+      node.querySelector('.wf-node-status').textContent = '處理中...';
+      const now = new Date();
+      const time = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+      log.innerHTML += `<div><span class="time">[${time}]</span> <span class="info">Step ${s.id}</span> — ${s.log}</div>`;
+      log.scrollTop = log.scrollHeight;
+    }, s.delay);
+    // Final step done
+    if (s.id === 5) {
+      setTimeout(() => {
+        const last = document.getElementById('wf-5');
+        last.className = 'wf-node done';
+        last.querySelector('.wf-node-status').className = 'wf-node-status done';
+        last.querySelector('.wf-node-status').textContent = '完成 ✓';
+        document.getElementById('wf-a4').className = 'wf-arrow active';
+        const now = new Date();
+        const time = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+        log.innerHTML += `<div><span class="time">[${time}]</span> <span class="success">✅ 流程完成</span> — 訂單 #ORD-2848 處理成功！總耗時 4.2 秒（手動處理平均需 15 分鐘）</div>`;
+        log.scrollTop = log.scrollHeight;
+        btn.disabled = false;
+      }, 5500);
+    }
+  });
+}
+
+// ===== Doc AI =====
+let currentDoc = 'invoice';
+function selectDoc(type, btn) {
+  currentDoc = type;
+  document.querySelectorAll('.doc-sample-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const docData = {
+  invoice: [
+    { label:'文件類型', value:'商業發票 (Invoice)', conf:'99%' },
+    { label:'發票編號', value:'INV-2026-00847', conf:'98%' },
+    { label:'供應商', value:'TechParts Trading Co. Ltd.', conf:'96%' },
+    { label:'日期', value:'2026-05-08', conf:'99%' },
+    { label:'到期日', value:'2026-06-07', conf:'97%' },
+    { label:'項目數量', value:'3 項', conf:'99%' },
+    { label:'總金額', value:'HKD $28,450.00', conf:'98%' },
+    { label:'稅款 (GST)', value:'HKD $0.00 (免稅)', conf:'95%' },
+  ],
+  contract: [
+    { label:'文件類型', value:'服務合約 (Service Agreement)', conf:'97%' },
+    { label:'合約編號', value:'SA-2026-0123', conf:'98%' },
+    { label:'甲方', value:'ABC Enterprises Ltd.', conf:'96%' },
+    { label:'乙方', value:'Minow Technology Co.', conf:'99%' },
+    { label:'生效日期', value:'2026-06-01', conf:'98%' },
+    { label:'合約期限', value:'12 個月', conf:'97%' },
+    { label:'服務範圍', value:'AI 自動化系統開發及維護', conf:'94%' },
+    { label:'合約金額', value:'HKD $180,000.00', conf:'96%' },
+  ],
+  receipt: [
+    { label:'文件類型', value:'收據 (Receipt)', conf:'99%' },
+    { label:'商戶名稱', value:'Minow Store', conf:'98%' },
+    { label:'收據編號', value:'RCT-20260508-003', conf:'97%' },
+    { label:'交易時間', value:'2026-05-08 14:32:15', conf:'99%' },
+    { label:'付款方式', value:'Visa **** 4242', conf:'96%' },
+    { label:'購買項目', value:'藍牙耳機 Pro x1, 保護殼 x1', conf:'95%' },
+    { label:'總金額', value:'HKD $1,480.00', conf:'99%' },
+    { label:'授權碼', value:'AUTH-88291', conf:'97%' },
+  ],
+};
+function analyzeDoc() {
+  const fields = document.getElementById('docFields');
+  const processing = document.getElementById('docProcessing');
+  fields.innerHTML = ''; processing.classList.add('active');
+  setTimeout(() => {
+    processing.classList.remove('active');
+    const data = docData[currentDoc];
+    data.forEach((f, i) => {
+      const div = document.createElement('div'); div.className = 'doc-field';
+      const confClass = parseInt(f.conf) >= 97 ? 'high' : 'med';
+      div.innerHTML = `<div class="doc-field-label">${f.label}</div><div class="doc-field-value" id="df-${i}">${f.value} <span class="doc-confidence ${confClass}">${f.conf} 置信度</span></div>`;
+      fields.appendChild(div);
+      setTimeout(() => { document.getElementById('df-'+i).classList.add('show'); }, 100 + i * 120);
+    });
+  }, 2000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minow — Book a Meeting</title>
+  <meta name="description" content="Book a free consultation with Minow. Choose a date and time that works for you.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="Minow.ai_logo.png" type="image/png">
+  <style>
+    .booking-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .booking-container { grid-template-columns: 1fr; }
+    }
+
+    /* Calendar */
+    .calendar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .calendar-header h3 {
+      font-size: 1.1rem; font-weight: 600; color: var(--text-dark);
+    }
+    .calendar-nav {
+      display: flex; gap: 8px;
+    }
+    .calendar-nav button {
+      background: var(--bg-light); border: 1px solid rgba(0,0,0,0.08);
+      width: 36px; height: 36px; border-radius: 10px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; font-size: 1.1rem; color: var(--text-dark);
+    }
+    .calendar-nav button:hover { border-color: var(--accent); color: var(--accent); }
+    .calendar-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .calendar-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+    }
+    .calendar-day-label {
+      text-align: center; font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted); padding: 8px 0; text-transform: uppercase;
+    }
+    .calendar-day {
+      text-align: center; padding: 10px 0; border-radius: 10px;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease;
+      position: relative;
+    }
+    .calendar-day.empty { cursor: default; }
+    .calendar-day.other-month { color: var(--text-muted); opacity: 0.3; cursor: default; }
+    .calendar-day.past { color: var(--text-muted); opacity: 0.4; cursor: not-allowed; }
+    .calendar-day.has-slots:not(.past):not(.other-month) {
+      color: var(--text-dark); font-weight: 500;
+    }
+    .calendar-day.has-slots:not(.past):not(.other-month):hover {
+      background: rgba(0, 212, 254, 0.08);
+    }
+    .calendar-day.selected {
+      background: var(--accent-dark) !important; color: #fff !important;
+      font-weight: 600;
+    }
+    .calendar-day.today {
+      border: 1px solid var(--accent);
+    }
+    .calendar-day .dot {
+      position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+    }
+    .calendar-day.selected .dot { background: #fff; }
+
+    /* Time slots */
+    .timeslots-section {
+      margin-top: 24px;
+    }
+    .timeslots-section h4 {
+      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .timeslots-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+    .timeslot {
+      text-align: center; padding: 10px 8px; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.08); transition: all 0.2s ease;
+      background: var(--bg-white);
+    }
+    .timeslot:hover:not(.unavailable) {
+      border-color: var(--accent); background: rgba(0, 212, 254, 0.04);
+    }
+    .timeslot.selected {
+      background: var(--accent-dark); color: #fff; border-color: var(--accent-dark);
+    }
+    .timeslot.unavailable {
+      opacity: 0.3; cursor: not-allowed; text-decoration: line-through;
+    }
+    .no-slots {
+      color: var(--text-muted); font-size: 0.9rem; padding: 20px 0;
+    }
+
+    /* Booking form */
+    .booking-form-section h3 {
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;
+    }
+    .booking-form-section .selected-info {
+      color: #00052a; font-size: 0.9rem; font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .booking-form .form-group {
+      margin-bottom: 16px;
+    }
+    .booking-form label {
+      display: block; font-size: 0.85rem; color: var(--text-muted);
+      font-weight: 500; margin-bottom: 6px;
+    }
+    .booking-form input, .booking-form textarea, .booking-form select {
+      width: 100%; background: var(--bg-light);
+      border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-sm);
+      padding: 12px 16px; font-size: 0.95rem; font-family: inherit;
+      transition: all 0.2s ease; outline: none; color: var(--text-dark);
+    }
+    .booking-form input:focus, .booking-form textarea:focus, .booking-form select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 212, 254, 0.08);
+    }
+    .booking-form textarea { resize: vertical; min-height: 80px; }
+    .booking-submit {
+      width: 100%; padding: 14px; font-size: 1rem; margin-top: 8px;
+    }
+
+    .booking-success {
+      display: none; text-align: center; padding: 60px 20px;
+    }
+    .booking-success.active { display: block; animation: fadeIn 0.5s ease; }
+    .booking-success .icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(0, 212, 254, 0.1);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin-bottom: 20px;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .booking-success h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .booking-success p { color: var(--text-muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="Minow.ai_logo.png" alt="Minow.ai" height="48"></a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+      <a href="services.html" data-en="Solutions" data-zh="方案">Solutions</a>
+      <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+      <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+      <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
+      <a href="booking.html" data-en="Book a Meeting" data-zh="預約會議" class="active">Book a Meeting</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <a href="booking.html" class="btn-cta" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+  <a href="services.html" data-en="Solutions" data-zh="方案">Solutions</a>
+  <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+  <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+</div>
+
+<!-- Booking Page -->
+<section style="padding: 140px 0 80px; background: var(--bg-white);">
+  <div class="container">
+    <div class="fade-up" style="margin-bottom: 40px;">
+      <div class="section-label" data-en="BOOK A MEETING" data-zh="預約會議">BOOK A MEETING</div>
+      <h1 class="section-title" data-en="Pick a time that works for you" data-zh="揀一個適合你嘅時間">Pick a time that works for you</h1>
+      <p class="section-desc" data-en="Select a date and time below. We'll send you a calendar invite to confirm." data-zh="揀好日期同時間，我哋會發 calendar invite 確認。">Select a date and time below. We'll send you a calendar invite to confirm.</p>
+    </div>
+
+    <div class="booking-container">
+      <!-- Left: Calendar + Time Slots -->
+      <div class="fade-up">
+        <div class="calendar-header">
+          <h3 id="calendarMonth"></h3>
+          <div class="calendar-nav">
+            <button id="prevMonth" aria-label="Previous month">‹</button>
+            <button id="nextMonth" aria-label="Next month">›</button>
+          </div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="timeslots-section" id="timeslotsSection" style="display: none;">
+          <h4 id="timeslotsTitle"></h4>
+          <div class="timeslots-grid" id="timeslotsGrid"></div>
+        </div>
+      </div>
+
+      <!-- Right: Booking Form -->
+      <div class="fade-up">
+        <div class="booking-form-section" id="bookingFormSection">
+          <h3 data-en="Your Details" data-zh="你嘅資料">Your Details</h3>
+          <div class="selected-info" id="selectedInfo" data-en="← Select a date & time" data-zh="← 揀個日期同時間">← Select a date & time</div>
+          <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+              <label data-en="Name *" data-zh="姓名 *">Name *</label>
+              <input type="text" name="name" required data-ph-en="Your name" data-ph-zh="你嘅名" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label data-en="Email *" data-zh="電郵 *">Email *</label>
+              <input type="email" name="email" required placeholder="you@company.com">
+            </div>
+            <div class="form-group">
+              <label data-en="Phone / WhatsApp *" data-zh="電話 / WhatsApp *">Phone / WhatsApp *</label>
+              <input type="tel" name="phone" required data-ph-en="+852 9XXX XXXX" data-ph-zh="+852 9XXX XXXX" placeholder="+852 9XXX XXXX">
+            </div>
+            <div class="form-group">
+              <label data-en="Company" data-zh="公司">Company</label>
+              <input type="text" name="company" data-ph-en="Company name" data-ph-zh="公司名稱" placeholder="Company name">
+            </div>
+            <div class="form-group">
+              <label data-en="Service" data-zh="服務">Service</label>
+              <select name="service">
+                <option value="" data-en="Select a service" data-zh="選擇服務">Select a service</option>
+                <option value="automation" data-en="AI Automation" data-zh="AI 自動化">AI Automation</option>
+                <option value="chatbot" data-en="AI Chatbot" data-zh="AI 聊天機械人">AI Chatbot</option>
+                <option value="website" data-en="Website Development" data-zh="網站開發">Website Development</option>
+                <option value="software" data-en="Custom Software" data-zh="客製軟件">Custom Software</option>
+                <option value="other" data-en="Other" data-zh="其他">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-en="About Your Project *" data-zh="關於你嘅項目 *">About Your Project *</label>
+              <textarea name="notes" rows="4" required data-ph-en="Tell us about your business challenge, e.g.:&#10;&#10;• What manual processes take up most of your time?&#10;• How many team members would use the solution?&#10;• What's your ideal timeline?&#10;• Any specific tools you currently use?" data-ph-zh="講下你嘅業務挑戰，例如：&#10;&#10;• 有咩重複性工作佔最多時間？&#10;• 幾多個同事會用到？&#10;• 你期望幾時搞掂？&#10;• 而家用緊咩工具？" placeholder="Tell us about your business challenge, e.g.:&#10;&#10;• What manual processes take up most of your time?&#10;• How many team members would use the solution?&#10;• What's your ideal timeline?&#10;• Any specific tools you currently use?"></textarea>
+            </div>
+            <button type="submit" class="btn-cta booking-submit" data-en="Confirm Booking" data-zh="確認預約">Confirm Booking</button>
+          </form>
+        </div>
+        <div class="booking-success" id="bookingSuccess">
+          <div class="icon">✓</div>
+          <h3 data-en="Booking Confirmed!" data-zh="預約成功！">Booking Confirmed!</h3>
+          <p data-en="We've sent you a calendar invite. Check your email for details." data-zh="我哋已經發咗 calendar invite 畀你。檢查你嘅電郵睇詳情。">We've sent you a calendar invite. Check your email for details.</p>
+          <br>
+          <a href="index.html" class="btn-cta" style="display: inline-block;" data-en="Back to Home" data-zh="返回首頁">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:0.85rem;">© 2026 Minow.ai. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
+    <div style="display:flex;gap:20px;font-size:0.8rem;">
+      <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
+      <a href="terms.html" style="color:var(--accent);">使用條款</a>
+      <a href="demo.html" style="color:var(--accent);">功能示範</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function() {
+  const monthNames = {
+    en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    zh: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+  };
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  let selectedDate = null;
+  let selectedTime = null;
+  let slotsCache = {};
+
+  const calendarGrid = document.getElementById('calendarGrid');
+  const calendarMonth = document.getElementById('calendarMonth');
+  const timeslotsSection = document.getElementById('timeslotsSection');
+  const timeslotsGrid = document.getElementById('timeslotsGrid');
+  const timeslotsTitle = document.getElementById('timeslotsTitle');
+  const selectedInfo = document.getElementById('selectedInfo');
+
+  async function fetchSlots(year, month) {
+    const startDate = new Date(year, month, 1);
+    const endDate = new Date(year, month + 1, 0);
+    const key = `${year}-${month}`;
+
+    if (slotsCache[key]) return slotsCache[key];
+
+    const startStr = startDate.toISOString().split('T')[0];
+    const endStr = endDate.toISOString().split('T')[0];
+
+    try {
+      const res = await fetch(`/api/calendar/slots?start=${startStr}&end=${endStr}`);
+      const data = await res.json();
+      slotsCache[key] = data.slots || [];
+      return slotsCache[key];
+    } catch (err) {
+      console.error('Failed to fetch slots:', err);
+      return [];
+    }
+  }
+
+  function renderCalendar(slots) {
+    calendarGrid.innerHTML = '';
+
+    // Day labels
+    dayNames.forEach(d => {
+      const label = document.createElement('div');
+      label.className = 'calendar-day-label';
+      label.textContent = d;
+      calendarGrid.appendChild(label);
+    });
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    // Group slots by date to find which days have availability
+    const slotsByDate = {};
+    slots.forEach(s => {
+      if (!slotsByDate[s.date]) slotsByDate[s.date] = [];
+      slotsByDate[s.date].push(s);
+    });
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'calendar-day empty';
+      calendarGrid.appendChild(empty);
+    }
+
+    // Days
+    for (let d = 1; d <= daysInMonth; d++) {
+      const mm = String(currentMonth + 1).padStart(2, '0');
+      const dd = String(d).padStart(2, '0');
+      const dateStr = `${currentYear}-${mm}-${dd}`;
+      const dateObj = new Date(currentYear, currentMonth, d);
+      const daySlots = slotsByDate[dateStr] || [];
+      const hasAvailable = daySlots.some(s => s.available);
+
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day';
+      cell.textContent = d;
+
+      if (dateObj < today) {
+        cell.classList.add('past');
+      } else if (hasAvailable) {
+        cell.classList.add('has-slots');
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        cell.appendChild(dot);
+        cell.addEventListener('click', () => selectDate(dateStr, daySlots));
+      }
+
+      if (dateObj.getTime() === today.getTime()) cell.classList.add('today');
+      if (dateStr === selectedDate) cell.classList.add('selected');
+
+      calendarGrid.appendChild(cell);
+    }
+
+    // Update header
+    const lang = window.currentLang || 'en';
+    calendarMonth.textContent = `${monthNames[lang][currentMonth]} ${currentYear}`;
+  }
+
+  function selectDate(dateStr, daySlots) {
+    selectedDate = dateStr;
+    selectedTime = null;
+
+    // Re-render calendar to update selection
+    const allSlots = slotsCache[`${currentYear}-${currentMonth}`] || [];
+    renderCalendar(allSlots);
+
+    // Show time slots
+    timeslotsSection.style.display = 'block';
+    const dateObj = new Date(dateStr + 'T00:00:00');
+    const lang = window.currentLang || 'en';
+    const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'Asia/Hong_Kong' };
+    timeslotsTitle.textContent = dateObj.toLocaleDateString(lang === 'zh' ? 'zh-Hant' : 'en', options);
+
+    timeslotsGrid.innerHTML = '';
+    const available = daySlots.filter(s => s.available);
+    const unavailable = daySlots.filter(s => !s.available);
+
+    if (available.length === 0) {
+      timeslotsGrid.innerHTML = `<div class="no-slots" data-en="No available slots on this day" data-zh="呢日冇空檔">No available slots on this day</div>`;
+      return;
+    }
+
+    available.forEach(slot => {
+      const el = document.createElement('div');
+      el.className = 'timeslot';
+      el.textContent = `${slot.timeStart} - ${slot.timeEnd}`;
+      el.addEventListener('click', () => selectTime(slot));
+      timeslotsGrid.appendChild(el);
+    });
+  }
+
+  function selectTime(slot) {
+    selectedTime = slot;
+    timeslotsGrid.querySelectorAll('.timeslot').forEach(el => {
+      el.classList.remove('selected');
+    });
+    event.target.classList.add('selected');
+
+    const dateObj = new Date(selectedDate + 'T00:00:00');
+    const dateStr = dateObj.toLocaleDateString(window.currentLang === 'zh' ? 'zh-Hant' : 'en', {
+      weekday: 'long', month: 'long', day: 'numeric', timeZone: 'Asia/Hong_Kong'
+    });
+    selectedInfo.textContent = `📅 ${dateStr} · ${slot.timeStart} - ${slot.timeEnd}`;
+    selectedInfo.setAttribute('data-en', `📅 ${dateStr} · ${slot.timeStart} - ${slot.timeEnd}`);
+    selectedInfo.setAttribute('data-zh', `📅 ${dateStr} · ${slot.timeStart} - ${slot.timeEnd}`);
+  }
+
+  // Navigation
+  document.getElementById('prevMonth').addEventListener('click', async () => {
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    const slots = await fetchSlots(currentYear, currentMonth);
+    renderCalendar(slots);
+    timeslotsSection.style.display = 'none';
+  });
+
+  document.getElementById('nextMonth').addEventListener('click', async () => {
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    const slots = await fetchSlots(currentYear, currentMonth);
+    renderCalendar(slots);
+    timeslotsSection.style.display = 'none';
+  });
+
+  // Booking form
+  document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!selectedDate || !selectedTime) {
+      alert('Please select a date and time first.');
+      return;
+    }
+
+    const btn = e.target.querySelector('.booking-submit');
+    const origText = btn.textContent;
+    btn.textContent = currentLang === 'en' ? 'Booking...' : '預約中...';
+    btn.disabled = true;
+
+    const formData = new FormData(e.target);
+    const body = Object.fromEntries(formData);
+    body.date = selectedDate;
+    body.timeStart = selectedTime.timeStart;
+
+    try {
+      const res = await fetch('/api/calendar/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('bookingFormSection').style.display = 'none';
+        document.getElementById('bookingSuccess').classList.add('active');
+      } else {
+        alert(data.error || 'Booking failed.');
+        btn.textContent = origText;
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Network error. Please try again.');
+      btn.textContent = origText;
+      btn.disabled = false;
+    }
+  });
+
+  // Initial load
+  fetchSlots(currentYear, currentMonth).then(renderCalendar);
+
+  // Re-render on language change
+  const origSetLang = window.setLang;
+  if (origSetLang) {
+    window.setLang = function(lang) {
+      origSetLang(lang);
+      const slots = slotsCache[`${currentYear}-${currentMonth}`] || [];
+      renderCalendar(slots);
+      if (selectedDate) {
+        const daySlots = slots.filter(s => s.date === selectedDate);
+        selectDate(selectedDate, daySlots);
+      }
+    };
+  }
+})();
+</script>
+<a href="https://wa.me/85200000000" target="_blank" class="wa-float"><span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+</body>
+</html>

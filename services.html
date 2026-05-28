@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minow.ai — Solutions</title>
+  <meta name="description" content="AI automation solutions for Hong Kong SMEs. Solve customer service, repetitive work, and data management problems.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="Minow.ai_logo.png" type="image/png">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="Minow.ai_logo.png" alt="Minow.ai" height="48"></a>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+      <a href="services.html" data-en="Solutions" data-zh="方案" class="active">Solutions</a>
+      <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
+      <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+      <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <a href="booking.html" class="btn-cta" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="Home" data-zh="首頁">Home</a>
+  <a href="services.html" data-en="Solutions" data-zh="方案">Solutions</a>
+  <a href="demo.html" data-en="Live Demo" data-zh="功能示範">功能示範</a>
+  <a href="about.html" data-en="About" data-zh="關於我們">About</a>
+  <a href="contact.html" data-en="Contact" data-zh="聯絡我們">Contact</a>
+  <a href="booking.html" class="btn-cta" style="text-align:center;" data-en="30 mins free consultation" data-zh="30分鐘免費諮詢">30 mins free consultation</a>
+</div>
+
+<!-- Page Header -->
+<section style="padding: 160px 0 60px; background: var(--bg-white);">
+  <div class="container fade-up">
+    <div class="section-label" data-en="OUR SERVICES" data-zh="我們的服務">OUR SERVICES</div>
+    <h1 class="section-title" data-en="Do less, earn more" data-zh="做少啲嘢 揾多啲錢">做少啲嘢 揾多啲錢</h1>
+    <p class="section-desc" data-en="Real case studies from Hong Kong SMEs" data-zh="我們的服務">我們的服務</p>
+  </div>
+</section>
+
+<!-- Solutions Tabs -->
+<section class="section-light" style="padding-top: 40px;">
+  <div class="container">
+    <div class="sol-tabs fade-up">
+      <button class="sol-tab active" onclick="switchSolTab('inventory')" data-en="📊 AI Inventory Management" data-zh="📊 AI庫存管理">📊 AI庫存管理</button>
+      <button class="sol-tab" onclick="switchSolTab('listing')" data-en="📦 AI Product Listing Assistant" data-zh="📦 AI新品上架助理">📦 AI新品上架助理</button>
+      <button class="sol-tab" onclick="switchSolTab('whatsapp')" data-en="📱 WhatsApp Order Scanner" data-zh="📱 WhatsApp訂單掃描">📱 WhatsApp訂單掃描</button>
+    </div>
+
+    <!-- Tab 1: AI庫存管理 + FR International Case Study -->
+    <div class="sol-panel active" id="panel-inventory">
+      <div class="container" style="padding:0;">
+
+        <!-- Hero -->
+        <div class="fade-up" style="text-align:center; margin-bottom:48px;">
+          <h2 class="section-title" data-en="From scattered Excel to a single Telegram window" data-zh="從分散 Excel 到單一 Telegram 工作窗口">從分散 Excel 到單一 Telegram 工作窗口</h2>
+        </div>
+
+        <!-- Hero Quote -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 48px; padding:32px 40px; background:var(--bg-light); border-radius:var(--radius); border-left:4px solid var(--accent);">
+          <p style="font-size:1.1rem; font-style:italic; color:var(--text-dark); line-height:1.8; margin:0;" data-en="Before, checking a Lot meant digging through Excel, asking colleagues, or even going back to the warehouse. Now the basic queries and records are handled right in Telegram — the team finds it much smoother, and it eliminates a lot of unnecessary back-and-forth." data-zh="以前一查 Lot，就要花時間翻 Excel、問同事，甚至回倉核對。現在最基本的查詢和記錄已經可以直接在 Telegram 處理，團隊用起來順很多，也減少了很多不必要的來回確認。">以前一查 Lot，就要花時間翻 Excel、問同事，甚至回倉核對。現在最基本的查詢和記錄已經可以直接在 Telegram 處理，團隊用起來順很多，也減少了很多不必要的來回確認。</p>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:16px; margin-bottom:0;" data-en="— FR International Limited (alias) · Trading / Logistics · 3–5 person team" data-zh="— FR International Limited（化名）· 貿易／物流 · 3–5人團隊">— FR International Limited（化名）· 貿易／物流 · 3–5人團隊</p>
+        </div>
+
+        <!-- Client Profile -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 48px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px;">
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="CLIENT" data-zh="客戶">客戶</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);">FR International Ltd.</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="INDUSTRY" data-zh="行業">行業</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Trading / Logistics / Supply Chain" data-zh="貿易／物流／供應鏈">貿易／物流／供應鏈</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="TEAM SIZE" data-zh="團隊規模">團隊規模</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="3–5 people" data-zh="3–5 人">3–5 人</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="DURATION" data-zh="週期">週期</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Completed in weeks" data-zh="數週內完成">數週內完成</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="❌ Before the system" data-zh="❌ 系統上線前">❌ 系統上線前</h3>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:12px;" data-en="The team relied on Excel, manual warehouse checks, and verbal confirmations. Looking up which Lot corresponds to a model, or which goods are in/out, often required physically going back to the warehouse and checking boxes one by one." data-zh="團隊主要依靠 Excel、人手查倉，以及同事之間的口頭確認。當需要查某一個型號對應哪一個 Lot、哪些貨已入庫、哪些先出，往往要靠同事回倉、逐份記錄翻查，甚至直接打開貨箱核實。">團隊主要依靠 Excel、人手查倉，以及同事之間的口頭確認。當需要查某一個型號對應哪一個 Lot、哪些貨已入庫、哪些先出，往往要靠同事回倉、逐份記錄翻查，甚至直接打開貨箱核實。</p>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2; padding-left:20px;">
+            <li data-en="Slow Lot verification process, frequently interrupting ongoing work" data-zh="Lot 查核流程慢，經常打斷正在進行嘅工作">Lot 查核流程慢，經常打斷正在進行嘅工作</li>
+            <li data-en="Stock in/out records scattered, updates often delayed" data-zh="出入貨記錄分散，更新容易延誤">出入貨記錄分散，更新容易延誤</li>
+            <li data-en="FIFO judgment relied on manual experience, prone to oversights" data-zh="FIFO 判斷依賴人手經驗，容易出現遺漏">FIFO 判斷依賴人手經驗，容易出現遺漏</li>
+            <li data-en="High cost of retrospective investigation when data is inconsistent" data-zh="資料不一致時，事後追查成本高">資料不一致時，事後追查成本高</li>
+          </ul>
+        </div>
+
+        <!-- Approach -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="🔧 Our solution" data-zh="🔧 我哋嘅方案">🔧 我哋嘅方案</h3>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:12px;" data-en="Instead of overhauling everything, we focused on the 3 most frequent pain points: Lot lookup, stock in/out recording, and FIFO tracking. The delivery is a lightweight Telegram Bot that serves as a single workspace for all inventory operations." data-zh="呢次方案冇先推翻整套流程，而係圍繞最常用、最痛嘅三個操作場景切入：查詢 Lot、記錄出入貨、追蹤庫存變更。最終交付係一個以 Telegram Bot 為入口嘅輕量庫存管理助手。">呢次方案冇先推翻整套流程，而係圍繞最常用、最痛嘅三個操作場景切入：查詢 Lot、記錄出入貨、追蹤庫存變更。最終交付係一個以 Telegram Bot 為入口嘅輕量庫存管理助手。</p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;">
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="Preserved existing workflows" data-zh="保留原有工作邏輯">保留原有工作邏輯</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="Focused on top 20% use cases" data-zh="集中處理最常用 20% 場景">集中處理最常用 20% 場景</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="Telegram as entry point, zero training cost" data-zh="Telegram 為入口，零培訓成本">Telegram 為入口，零培訓成本</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="Low-friction adoption" data-zh="低阻力導入">低阻力導入</span>
+          </div>
+        </div>
+
+        <!-- Outcome -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:rgba(0,212,254,0.05); border-radius:var(--radius); border-left:4px solid var(--accent);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:20px;" data-en="✅ Results" data-zh="✅ 成果">✅ 成果</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-bottom:20px;">
+            <div style="text-align:center; padding:24px 16px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">300+</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Operation hours recovered per year" data-zh="每年回收營運時數">每年回收營運時數</div>
+            </div>
+            <div style="text-align:center; padding:24px 16px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">208h</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Lot verification hours saved per year" data-zh="Lot 查核每年節省">Lot 查核每年節省</div>
+            </div>
+            <div style="text-align:center; padding:24px 16px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">120h</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Stock in/out logging hours saved per year" data-zh="出入貨記錄每年節省">出入貨記錄每年節省</div>
+            </div>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;" data-en="More importantly, inventory queries and records are now more real-time, centralized, and traceable. Daily operations no longer depend on one colleague's memory, physical warehouse checks, or scattered spreadsheets." data-zh="更重要嘅係，庫存查詢同記錄流程變得更即時、更集中、更容易回溯。日常營運唔再依賴某一位同事嘅記憶、倉庫現場查核，或分散表格嘅手動同步。">更重要嘅係，庫存查詢同記錄流程變得更即時、更集中、更容易回溯。日常營運唔再依賴某一位同事嘅記憶、倉庫現場查核，或分散表格嘅手動同步。</p>
+        </div>
+
+        <!-- Future -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="🚀 Future roadmap" data-zh="🚀 未來延伸方向">🚀 未來延伸方向</h3>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Auto-generate comprehensive inventory movement reports" data-zh="自動生成更完整嘅庫存異動報表">自動生成更完整嘅庫存異動報表</li>
+            <li data-en="Add low-stock alerts and restock reminders" data-zh="加入低庫存提醒與補貨提示">加入低庫存提醒與補貨提示</li>
+            <li data-en="Integrate purchasing and order data to reduce duplicate input" data-zh="串接採購或訂單資料，減少重複輸入">串接採購或訂單資料，減少重複輸入</li>
+            <li data-en="Gradually upgrade to semi-automated workflows" data-zh="逐步升級為半自動化工作流">逐步升級為半自動化工作流</li>
+          </ul>
+        </div>
+
+        <!-- Suitable For -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 0; padding:32px; background:var(--bg-light); border-radius:var(--radius); border:1px solid rgba(0,0,0,0.06);">
+          <h3 style="font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="Who is this for?" data-zh="呢類方案適合邊類團隊？">呢類方案適合邊類團隊？</h3>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Still relying mainly on Excel, WhatsApp, phone calls, or manual checks for operations" data-zh="仍然主要依靠 Excel、WhatsApp、電話或人手查核處理營運">仍然主要依靠 Excel、WhatsApp、電話或人手查核處理營運</li>
+            <li data-en="Small team but getting interrupted daily by repetitive admin tasks" data-zh="規模唔大，但每日都被重複行政動作打斷">規模唔大，但每日都被重複行政動作打斷</li>
+            <li data-en="Not ready for a full ERP, but already feeling the cost of process chaos" data-zh="未準備好上大型 ERP，但已明顯感受到流程混亂帶來嘅成本">未準備好上大型 ERP，但已明顯感受到流程混亂帶來嘅成本</li>
+            <li data-en="Want to validate ROI with low risk first, then scale gradually" data-zh="想先用低風險方式驗證 ROI，再逐步擴展">想先用低風險方式驗證 ROI，再逐步擴展</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 2: WhatsApp訂單掃描 + Case Study -->
+    <div class="sol-panel" id="panel-whatsapp">
+      <div class="container" style="padding:0;">
+
+        <!-- Hero -->
+        <div class="fade-up" style="text-align:center; margin-bottom:48px;">
+          <h2 class="section-title" data-en="Auto-sync scattered WhatsApp chats to Excel" data-zh="從散亂WhatsApp對話自動同步到Excel">從散亂WhatsApp對話自動同步到Excel</h2>
+        </div>
+
+
+        <!-- Hero Quote-->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 48px; padding:32px 40px; background:var(--bg-light); border-radius:var(--radius); border-left:4px solid var(--accent);">
+          <p class="section-desc" style="font-size:1.1rem; font-style:italic; color:var(--text-dark); line-height:1.8; margin:0;" data-en="How a one-person online shop used AI to auto-organize WhatsApp orders, replacing the nightmare of manually scrolling chats and filling Excel." data-zh="一人網店如何用 AI 自動整理 WhatsApp 訂單，取代人手翻對話紀錄再填 Excel 的噩夢。">一人網店如何用 AI 自動整理 WhatsApp 訂單，取代人手翻對話紀錄再填 Excel 的噩夢。</p>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:16px; margin-bottom:0;" data-en="— TOY SHOP · Retail / Online Store · 1–2 person team" data-zh="— TOY SHOP· 零售/網店 · 1–2人團隊">— TOY SHOP· 零售/網店 · 1–2人團隊</p>
+        </div>
+
+
+        <!-- Client Profile -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 48px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px;">
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="INDUSTRY" data-zh="行業">行業</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Toy retail" data-zh="玩具零售">玩具零售</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="SCALE" data-zh="規模">規模</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Solo operator" data-zh="1 人經營">1 人經營</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="REGION" data-zh="地區">地區</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Hong Kong" data-zh="香港">香港</div>
+            </div>
+            <div style="padding:20px; background:var(--bg-light); border-radius:var(--radius-sm); text-align:center;">
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:8px;" data-en="STATUS" data-zh="狀態">狀態</div>
+              <div style="font-size:0.95rem; font-weight:600; color:var(--text-dark);" data-en="Live and running" data-zh="已上線運作">已上線運作</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="❌ Before — Manually cross-checking WhatsApp then filling Excel" data-zh="❌ 系統上線前 — 人手對照 WhatsApp 再填 Excel">❌ 系統上線前 — 人手對照 WhatsApp 再填 Excel</h3>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:12px;" data-en="Running an online toy shop, mainly taking orders through WhatsApp. Receiving dozens of messages every day — price inquiries, orders, payment confirmations, follow-ups — all mixed in one chat." data-zh="經營網上玩具店，主要透過 WhatsApp 接單。每日收幾十條訊息——客人問價、落單、確認付款、追貨——全部混在同一個 chat 入面。">經營網上玩具店，主要透過 WhatsApp 接單。每日收幾十條訊息——客人問價、落單、確認付款、追貨——全部混在同一個 chat 入面。</p>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:12px;" data-en="The original process:" data-zh="原本嘅流程："><strong>原本嘅流程：</strong></p>
+          <ol style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Open WhatsApp, scroll through messages one by one" data-zh="打開 WhatsApp，逐條訊息翻閱">打開 WhatsApp，逐條訊息翻閱</li>
+            <li data-en="Manually cross-check who ordered, what they bought, whether they paid" data-zh="人手對照邊個落咗單、買咗乜、俾咗錢未">人手對照邊個落咗單、買咗乜、俾咗錢未</li>
+            <li data-en="Manually enter each record into Excel" data-zh="再手動逐筆填入 Excel">再手動逐筆填入 Excel</li>
+          </ol>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-top:16px; margin-bottom:12px;" data-en="The biggest pain points:" data-zh="最痛嘅位："><strong>最痛嘅位：</strong></p>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2; padding-left:20px;">
+            <li data-en="Missed orders — Too many messages, too fast. Easy to miss orders that were placed but not recorded" data-zh="漏單 — 訊息多、節奏快，忙起嚟容易漏掉已落單但未記錄嘅客"><strong>漏單</strong> — 訊息多、節奏快，忙起嚟容易漏掉已落單但未記錄嘅客</li>
+            <li data-en="Time black hole — Spending ~20 hours per week purely on 'scrolling records + filling forms' repetitive work" data-zh="時間黑洞 — 每週花約 20 小時純粹做「翻紀錄 + 填表」嘅重複工作"><strong>時間黑洞</strong> — 每週花約 20 小時純粹做「翻紀錄 + 填表」嘅重複工作</li>
+            <li data-en="Solo operator risk — No one to back you up. Busy = chaos, chaos = missed orders" data-zh="單人經營嘅風險 — 冇人 backup，一忙就亂，一亂就漏"><strong>單人經營嘅風險</strong> — 冇人 backup，一忙就亂，一亂就漏</li>
+          </ul>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-top:12px;" data-en="For a one-person shop, 20 hours is almost a part-time role. And what that 20 hours accomplishes is essentially just 'moving data'." data-zh="對一個人嘅網店嚟講，20 小時幾乎係一個 part-time。而呢 20 小時做嘅嘢，本質上只係「搬資料」。">對一個人嘅網店嚟講，20 小時幾乎係一個 part-time。而呢 20 小時做嘅嘢，本質上只係「搬資料」。</p>
+        </div>
+
+        <!-- Approach -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="🔧 Solution — WhatsApp Deal Scanner" data-zh="🔧 方案 — WhatsApp Deal Scanner">🔧 方案 — WhatsApp Deal Scanner</h3>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:12px;" data-en="An automated pipeline that runs every night at a fixed time:" data-zh="一個自動化 pipeline，每晚固定時間跑：">一個自動化 pipeline，每晚固定時間跑：</p>
+          <ol style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Sync WhatsApp messages — wacli syncs chat history to a local database" data-zh="同步 WhatsApp 訊息 — 透過 wacli 將 WhatsApp 對話記錄同步到本地數據庫"><strong>同步 WhatsApp 訊息</strong> — 透過 wacli 將 WhatsApp 對話記錄同步到本地數據庫</li>
+            <li data-en="AI scan for completed orders — Identifies confirmation messages containing 'received' + 'thanks', locking in completed conversations" data-zh="AI 掃描已成交訂單 — 辨識包含「收到」+「thanks」嘅確認訊息，鎖定已成交嘅對話"><strong>AI 掃描已成交訂單</strong> — 辨識包含「收到」+「thanks」嘅確認訊息，鎖定已成交嘅對話</li>
+            <li data-en="AI extract order details — Uses LLM to extract: product name, quantity, unit price, total amount, payment method" data-zh="AI 提取訂單細節 — 用 LLM 從對話中提取：產品名、數量、單價、總金額、付款方式"><strong>AI 提取訂單細節</strong> — 用 LLM 從對話中提取：產品名、數量、單價、總金額、付款方式</li>
+            <li data-en="Auto-write to Google Sheet — Structured data appends directly to spreadsheet, zero manual intervention" data-zh="自動寫入 Google Sheet — 結構化資料直接 append 到試算表，冇人手介入"><strong>自動寫入 Google Sheet</strong> — 結構化資料直接 append 到試算表，冇人手介入</li>
+          </ol>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-top:16px; margin-bottom:16px;" data-en="Tech stack:" data-zh="技術棧："><strong>技術棧：</strong></p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="wacli — WhatsApp message sync" data-zh="wacli — WhatsApp 訊息同步">wacli — WhatsApp 訊息同步</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);">Python + SQLite + Regex</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="GLM-5 Turbo (LLM)" data-zh="GLM-5 Turbo（LLM）">GLM-5 Turbo（LLM）</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);">Google Sheets API</span>
+            <span style="padding:6px 16px; background:rgba(8,255,255,0.08); border:1px solid rgba(8,255,255,0.2); border-radius:20px; font-size:0.8rem; color:var(--text-dark);" data-en="OpenClaw Cron — Scheduled triggers" data-zh="OpenClaw Cron — 定時觸發">OpenClaw Cron — 定時觸發</span>
+          </div>
+        </div>
+
+        <!-- Why This Approach -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="💡 Why this approach?" data-zh="💡 點解咁做？">💡 點解咁做？</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-bottom:12px;" data-en="Why not just optimize Excel? Excel itself isn't the problem — the bottleneck is the data entry step. WhatsApp conversations have no fixed format, so manual reading and transcription is the real bottleneck." data-zh="點解唔直接用 Excel 優化？ Excel 本身冇問題，問題係入 data 嗰步——WhatsApp 嘅對話格式唔固定，人手閱讀再轉寫先係 bottleneck。"><strong>點解唔直接用 Excel 優化？</strong> Excel 本身冇問題，問題係入 data 嗰步——WhatsApp 嘅對話格式唔固定，人手閱讀再轉寫先係 bottleneck。</p>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-bottom:12px;" data-en="Why not buy off-the-shelf SaaS? Most order management systems on the market are designed for larger teams — overkill. Google Sheet is the lowest-friction output — open and view immediately, no login required." data-zh="點解唔買現成 SaaS？ 市面上嘅 order management system 多數為多人大團隊設計，overkill 得滯。Google Sheet 係最無阻力嘅 output——開即睇，唔使登入。"><strong>點解唔買現成 SaaS？</strong> 市面上嘅 order management system 多數為多人大團隊設計，overkill 得滯。Google Sheet 係最無阻力嘅 output——開即睇，唔使登入。</p>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-bottom:12px;" data-en="Why use AI extraction instead of pure rules? WhatsApp conversations have no fixed format. Regex can catch patterns like '$150', but understanding '2 boxes of A + 3 copies of B, what's the total?' — AI is far more accurate and flexible." data-zh="點解用 AI 提取而唔係純 rule？ WhatsApp 對話冇固定格式。Regex 可以捉到「$150」呢啲 pattern，但要理解「兩盒 A + 三本 B 總數幾多」，AI 準確度同彈性好太多。"><strong>點解用 AI 提取而唔係純 rule？</strong> WhatsApp 對話冇固定格式。Regex 可以捉到「$150」呢啲 pattern，但要理解「兩盒 A + 三本 B 總數幾多」，AI 準確度同彈性好太多。</p>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8;" data-en="Extremely low adoption friction: No change to order-taking method, no new actions required from customers, no new system to learn, runs automatically every night without manual triggering." data-zh="導入阻力極低： 冇改變接單方式、冇要客人做任何新嘢、冇新系統要學、每晚自動跑唔使手動觸發。"><strong>導入阻力極低：</strong> 冇改變接單方式、冇要客人做任何新嘢、冇新系統要學、每晚自動跑唔使手動觸發。</p>
+        </div>
+
+        <!-- Outcome -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:rgba(0,212,254,0.05); border-radius:var(--radius); border-left:4px solid var(--accent);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:20px;" data-en="✅ Results & ROI" data-zh="✅ 成果 & ROI">✅ 成果 & ROI</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; margin-bottom:20px;">
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">14h</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Saved per week (20h→6h)" data-zh="每週慳返（20h→6h）">每週慳返（20h→6h）</div>
+            </div>
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">70%</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Reduction in order processing time" data-zh="減少訂單處理時間">減少訂單處理時間</div>
+            </div>
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">2-3日</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="From concept to live" data-zh="由構思到上線">由構思到上線</div>
+            </div>
+          </div>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2; padding-left:20px; margin-bottom:16px;">
+            <li data-en="Order records no longer depend on manually scrolling through chat history" data-zh="訂單記錄唔再依賴人手翻閱對話紀錄">訂單記錄唔再依賴人手翻閱對話紀錄</li>
+            <li data-en="Payment status auto-tracked (confirmed / pending)" data-zh="付款狀態自動追蹤（已確認 / 待確認）">付款狀態自動追蹤（已確認 / 待確認）</li>
+            <li data-en="Google Sheet becomes the single record window — search, filter, reconcile anytime" data-zh="Google Sheet 成為單一記錄窗口，隨時可以翻查、篩選、對數">Google Sheet 成為單一記錄窗口，隨時可以翻查、篩選、對數</li>
+            <li data-en="No more 'I remember receiving payment but can't find the record'" data-zh="冇再出現「記得收咗錢但搵唔返紀錄」嘅情況">冇再出現「記得收咗錢但搵唔返紀錄」嘅情況</li>
+          </ul>
+          <p style="color:var(--text-dark); font-size:0.95rem; line-height:1.8; font-weight:600;" data-en="What it means for solo operators: Recovering 14 hours per week isn't an efficiency gain — it's survival space. That time can be spent on things that actually need a human: replying to customers, sourcing products, handling logistics, thinking about how to grow the business." data-zh="對一人經營嘅意義：每週回收 14 小時，唔係 efficiency gain —— 係生存空間。嗰啲時間可以做返真正需要人嘅嘢：回覆客人、搵貨、處理物流、諗下點樣拓展業務。">對一人經營嘅意義：每週回收 14 小時，唔係 efficiency gain —— 係生存空間。嗰啲時間可以做返真正需要人嘅嘢：回覆客人、搵貨、處理物流、諗下點樣拓展業務。</p>
+        </div>
+
+        <!-- Difficulties -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="⚠️ Challenges & how we overcame them" data-zh="⚠️ 挑戰同克服方式">⚠️ 挑戰同克服方式</h3>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2; padding-left:20px;">
+            <li data-en="Unstable WhatsApp connection — wacli sync occasionally disconnects; needed auto-reconnect mechanism and timeout protection" data-zh="WhatsApp 連線不穩定 — wacli sync 偶爾斷線，需要自動重連機制同 timeout 保護"><strong>WhatsApp 連線不穩定</strong> — wacli sync 偶爾斷線，需要自動重連機制同 timeout 保護</li>
+            <li data-en="No fixed conversation format — Initial pure regex extraction had insufficient accuracy; switched to LLM for major improvement, but periodic manual review still needed" data-zh="對話格式唔固定 — 初期純 regex 提取準確度唔夠，改用 LLM 後大幅改善，但仍需要定期覆核"><strong>對話格式唔固定</strong> — 初期純 regex 提取準確度唔夠，改用 LLM 後大幅改善，但仍需要定期覆核</li>
+            <li data-en="Avoiding duplicate records — Same transaction can't be entered twice; needed dedup logic (using order ID + timestamp)" data-zh="避免重複記錄 — 同一筆成交唔可以入兩次，需要 dedup 邏輯（用訂單 ID + timestamp）"><strong>避免重複記錄</strong> — 同一筆成交唔可以入兩次，需要 dedup 邏輯（用訂單 ID + timestamp）</li>
+          </ul>
+        </div>
+
+        <!-- Future -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px; padding:32px; background:var(--bg-light); border-radius:var(--radius);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="🚀 Future development" data-zh="🚀 未來發展">🚀 未來發展</h3>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Add real-time processing mode — write to sheet immediately upon deal confirmation" data-zh="加入 real-time 處理模式——收到成交確認即刻寫入">加入 real-time 處理模式——收到成交確認即刻寫入</li>
+            <li data-en="Integrate POS system so WhatsApp orders go directly into inventory" data-zh="接埋 POS 系統，令 WhatsApp 訂單直接入庫存">接埋 POS 系統，令 WhatsApp 訂單直接入庫存</li>
+            <li data-en="Auto-generate daily/weekly sales summary reports" data-zh="自動生成每日/每週銷售摘要 report">自動生成每日/每週銷售摘要 report</li>
+          </ul>
+        </div>
+
+        <!-- Suitable For -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 0; padding:32px; background:var(--bg-light); border-radius:var(--radius); border:1px solid rgba(0,0,0,0.06);">
+          <h3 style="font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:16px;" data-en="🎯 Who is this for?" data-zh="🎯 適合邊類經營者？">🎯 適合邊類經營者？</h3>
+          <ul style="color:var(--text-muted); font-size:0.9rem; line-height:2.2; padding-left:20px;">
+            <li data-en="Hong Kong solo or small team online shop operators" data-zh="香港一人或小團隊網店經營者">香港一人或小團隊網店經營者</li>
+            <li data-en="Retailers who mainly take orders via WhatsApp / Signal" data-zh="主要用 WhatsApp / Signal 接單嘅零售商">主要用 WhatsApp / Signal 接單嘅零售商</li>
+            <li data-en="Bosses who spend too much time daily 'scrolling chat history + filling forms'" data-zh="每日花大量時間做「翻對話紀錄 + 填表」嘅老闆">每日花大量時間做「翻對話紀錄 + 填表」嘅老闆</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 3: AI新品上架助理 -->
+    <div class="sol-panel" id="panel-listing">
+      <div class="container" style="padding:0;">
+
+        <div class="fade-up" style="text-align:center; margin-bottom:48px;">
+          <h2 class="section-title" data-en="AI Product Listing Assistant" data-zh="AI新品上架助理">AI新品上架助理</h2>
+          <p class="section-desc" data-en="Automate product listing across multiple platforms with AI" data-zh="AI 自動化多平台商品上架">AI 自動化多平台商品上架</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 48px; padding:32px; background:rgba(0,212,254,0.05); border-radius:var(--radius); border-left:4px solid var(--accent);">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:20px;" data-en="✅ Results" data-zh="✅ 成果">✅ 成果</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; margin-bottom:20px;">
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">300%</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Listing speed boost" data-zh="上架速度提升">上架速度提升</div>
+            </div>
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">15min</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Per product (was 2 hours)" data-zh="每個產品（原本 2 小時）">每個產品（原本 2 小時）</div>
+            </div>
+            <div style="text-align:center; padding:24px 12px; background:var(--bg-white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:800; color:#00052a;">EN+ZH</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" data-en="Auto-generated copy" data-zh="自動生成中英文描述">自動生成中英文描述</div>
+            </div>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;" data-en="A cross-border e-commerce brand used our AI listing assistant. Result: listing speed increased 300%, from 2 hours per product down to 15 minutes." data-zh="一間跨境電商品牌用咗我哋嘅 AI 上架助理。結果：上架速度提升 300%，由每個產品 2 小時縮減到 15 分鐘。">一間跨境電商品牌用咗我哋嘅 AI 上架助理。結果：上架速度提升 300%，由每個產品 2 小時縮減到 15 分鐘。</p>
+        </div>
+
+        <!-- Features -->
+        <div class="fade-up" style="max-width:800px; margin:0 auto 24px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+            <div style="padding:24px; background:var(--bg-light); border-radius:var(--radius-sm);">
+              <h4 style="font-size:1rem; font-weight:700; margin-bottom:8px;" data-en="Multi-Platform" data-zh="多平台支援">多平台支援</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem;" data-en="One-click publish to Shopify, Shopee, HKTVmall" data-zh="一鍵發佈到 Shopify、Shopee、HKTVmall">一鍵發佈到 Shopify、Shopee、HKTVmall</p>
+            </div>
+            <div style="padding:24px; background:var(--bg-light); border-radius:var(--radius-sm);">
+              <h4 style="font-size:1rem; font-weight:700; margin-bottom:8px;" data-en="AI Copywriting" data-zh="AI 文案生成">AI 文案生成</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem;" data-en="Auto-generate product descriptions in EN & ZH" data-zh="自動生成中英文產品描述">自動生成中英文產品描述</p>
+            </div>
+            <div style="padding:24px; background:var(--bg-light); border-radius:var(--radius-sm);">
+              <h4 style="font-size:1rem; font-weight:700; margin-bottom:8px;" data-en="SEO Optimization" data-zh="SEO 優化">SEO 優化</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem;" data-en="AI-optimized keywords for better search ranking" data-zh="AI 優化關鍵字提升搜索排名">AI 優化關鍵字提升搜索排名</p>
+            </div>
+            <div style="padding:24px; background:var(--bg-light); border-radius:var(--radius-sm);">
+              <h4 style="font-size:1rem; font-weight:700; margin-bottom:8px;" data-en="Bulk Operations" data-zh="批量操作">批量操作</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem;" data-en="List hundreds of products at once" data-zh="一次過上架數百件產品">一次過上架數百件產品</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section-white">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label" data-en="HOW WE WORK" data-zh="我們的工作方式">HOW WE WORK</div>
+      <h2 id="title-process" class="section-title">Simple process, <span class="muted">real results</span></h2>
+      <p class="section-desc" data-en="Three steps to transform your business operations." data-zh="三個步驟，改變你的業務運營。">Three steps to transform your business operations.</p>
+    </div>
+    <div class="process-grid stagger-children">
+      <div class="process-step fade-up">
+        <div class="process-number">01</div>
+        <h3 data-en="Discovery" data-zh="了解需求">Discovery<small data-en="Understand your workflows" data-zh="深入了解你的工作流程">Understand your workflows</small></h3>
+        <p data-en="We start with a free consultation to understand your business, identify bottlenecks, and find the best opportunities for automation." data-zh="我們從免費諮詢開始，了解你的業務，找出瓶頸，並尋找最佳的自動化機會。">We start with a free consultation to understand your business, identify bottlenecks, and find the best opportunities for automation.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-number">02</div>
+        <h3 data-en="Design & Build" data-zh="設計與開發">Design & Build<small data-en="Tailored to your needs" data-zh="為你量身打造">Tailored to your needs</small></h3>
+        <p data-en="We design and develop a custom solution — whether it's an automated workflow, chatbot, or a full web application — built specifically for your business." data-zh="我們設計並開發客製化解決方案 — 無論是自動化工作流程、聊天機械人還是完整的網頁應用程式 — 專為你的業務構建。">We design and develop a custom solution — whether it's an automated workflow, chatbot, or a full web application — built specifically for your business.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-number">03</div>
+        <h3 data-en="Launch & Support" data-zh="上線與支援">Launch & Support<small data-en="Ongoing optimization" data-zh="持續優化">Ongoing optimization</small></h3>
+        <p data-en="We deploy your solution, monitor performance, and provide ongoing support to ensure everything runs smoothly as your business grows." data-zh="我們部署你的解決方案，監控性能，並提供持續支援，確保一切順利運行，與你的業務一起成長。">We deploy your solution, monitor performance, and provide ongoing support to ensure everything runs smoothly as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-purple" style="text-align: center;">
+  <div class="container fade-up">
+    <h2 class="section-title" style="margin-bottom: 16px;" data-en="How much time do you spend processing WhatsApp orders every day?" data-zh="你每日花幾多時間處理 WhatsApp 訂單？">你每日花幾多時間處理 WhatsApp 訂單？</h2>
+    <p style="color: var(--text-white-muted); font-size: 1.05rem; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto;" data-en="If your answer is 'too much', we can help you with a free AI Workflow Audit — see how much of your order process can be automated." data-zh="如果你的答案係「太多」，我可以幫你做一次免費 AI Workflow Audit——睇下你嘅接單流程有幾多可以被自動化。">如果你的答案係「太多」，我可以幫你做一次免費 AI Workflow Audit——睇下你嘅接單流程有幾多可以被自動化。</p>
+    <a href="booking.html" class="btn-cta" style="display: inline-block; background:#08ffff; color:#00052a;" data-en="👉 Book a free AI Audit" data-zh="👉 預約免費 AI Audit">👉 預約免費 AI Audit</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:0.85rem;">© 2026 Minow.ai. All rights reserved. · <span data-en="Based in Hong Kong" data-zh="立足香港">立足香港</span></div>
+    <div style="display:flex;gap:20px;font-size:0.8rem;">
+      <a href="privacy.html" style="color:var(--accent);">私隱政策</a>
+      <a href="terms.html" style="color:var(--accent);">使用條款</a>
+      <a href="demo.html" style="color:var(--accent);">功能示範</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function switchSolTab(id) {
+  document.querySelectorAll('.sol-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  // Re-init scroll animations for newly visible elements
+  document.querySelectorAll('#panel-' + id + ' .fade-up, #panel-' + id + ' .scale-in').forEach(el => {
+    el.classList.remove('visible');
+    scrollObserver.observe(el);
+  });
+}
+</script>
+<a href="https://wa.me/85259134629" target="_blank" class="wa-float"><span class="wa-tooltip">WhatsApp 我哋</span><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+</body>
+</html>
